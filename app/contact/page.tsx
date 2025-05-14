@@ -13,6 +13,8 @@ export default function Contact() {
   });
   
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -22,18 +24,41 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Burada form gönderme işlemi yapılabilir, şimdilik sadece gönderildi mesajı gösteriyoruz
-    setFormSubmitted(true);
-    // Form verilerini sıfırla
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      message: '',
-    });
+    setIsSubmitting(true);
+    setError('');
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Bir hata oluştu');
+      }
+      
+      // Form başarıyla gönderildi
+      setFormSubmitted(true);
+      // Form verilerini sıfırla
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: '',
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Bir hata oluştu');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,6 +95,12 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-900/30 border border-red-500 text-white p-4 rounded-lg">
+                      {error}
+                    </div>
+                  )}
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
@@ -148,9 +179,10 @@ export default function Contact() {
                   <div>
                     <button
                       type="submit"
-                      className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-lg transition duration-300"
+                      disabled={isSubmitting}
+                      className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-lg transition duration-300 disabled:opacity-70"
                     >
-                      Gönder
+                      {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
                     </button>
                   </div>
                 </form>
