@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "features": "Özellikler",
+    "docs": "Dökümantasyon",
+    "pricing": "Fiyatlandırma",
+    "blog": "Blog",
+    "contact": "İletişim"
+  },
+  "footer": {
+    "description": "Agent bazlı veritabanı izleme ve yönetim çözümü. MSSQL, MongoDB ve PostgreSQL için tam destek.",
+    "product": "Ürün",
+    "company": "Şirket",
+    "support": "Destek",
+    "updates": "Güncellemeler",
+    "about": "Hakkımızda",
+    "careers": "Kariyer",
+    "helpCenter": "Yardım Merkezi",
+    "statusPage": "Durum Sayfası",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "metadata": {
+    "title": "ClusterEye - Veritabanı İzleme ve Yönetim Platformu",
+    "description": "MSSQL, MongoDB ve PostgreSQL veritabanlarınızı agent bazlı teknoloji ile izleyin ve yönetin."
+  }
+} 

@@ -1,15 +1,48 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { getLanguageFromPath } from "@/app/i18n";
+import { usePathname } from "next/navigation";
 
-export default function Footer() {
+interface FooterProps {
+  translations: {
+    navigation: {
+      features: string;
+      docs: string;
+      pricing: string;
+      blog: string;
+      contact: string;
+    };
+    footer: {
+      description: string;
+      product: string;
+      company: string;
+      support: string;
+      updates: string;
+      about: string;
+      careers: string;
+      helpCenter: string;
+      statusPage: string;
+      privacy: string;
+      terms: string;
+      copyright: string;
+    };
+  };
+}
+
+export default function Footer({ translations }: FooterProps) {
+  const pathname = usePathname();
+  const lang = getLanguageFromPath(pathname);
+  
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Branding */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center">
+            <Link href={`/${lang}`} className="flex items-center">
               <Image 
                 src="/clustereye_logo.png" 
                 alt="ClusterEye Logo" 
@@ -21,7 +54,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-white">ClusterEye</span>
             </Link>
             <p className="mt-4 text-sm text-gray-400">
-              Agent bazlı veritabanı izleme ve yönetim çözümü. MSSQL, MongoDB ve PostgreSQL için tam destek.
+              {translations.footer.description}
             </p>
             <div className="flex mt-6 space-x-4">
               <a href="#" className="text-gray-400 hover:text-white">
@@ -38,26 +71,26 @@ export default function Footer() {
 
           {/* Ürün Bağlantıları */}
           <div className="col-span-1">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Ürün</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">{translations.footer.product}</h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/features" className="text-gray-400 hover:text-white text-sm">
-                  Özellikler
+                <Link href={`/${lang}/features`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.navigation.features}
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-gray-400 hover:text-white text-sm">
-                  Fiyatlandırma
+                <Link href={`/${lang}/pricing`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.navigation.pricing}
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="text-gray-400 hover:text-white text-sm">
-                  Dökümantasyon
+                <Link href={`/${lang}/docs`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.navigation.docs}
                 </Link>
               </li>
               <li>
-                <Link href="/updates" className="text-gray-400 hover:text-white text-sm">
-                  Güncellemeler
+                <Link href={`/${lang}/updates`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.updates}
                 </Link>
               </li>
             </ul>
@@ -65,26 +98,26 @@ export default function Footer() {
 
           {/* Şirket Bağlantıları */}
           <div className="col-span-1">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Şirket</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">{translations.footer.company}</h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white text-sm">
-                  Hakkımızda
+                <Link href={`/${lang}/about`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.about}
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-400 hover:text-white text-sm">
-                  Kariyer
+                <Link href={`/${lang}/career`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.careers}
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-400 hover:text-white text-sm">
-                  Blog
+                <Link href={`/${lang}/blog`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.navigation.blog}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white text-sm">
-                  İletişim
+                <Link href={`/${lang}/contact`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.navigation.contact}
                 </Link>
               </li>
             </ul>
@@ -92,26 +125,26 @@ export default function Footer() {
 
           {/* Destek Bağlantıları */}
           <div className="col-span-1">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Destek</h3>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">{translations.footer.support}</h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href="/help" className="text-gray-400 hover:text-white text-sm">
-                  Yardım Merkezi
+                <Link href={`/${lang}/help`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.helpCenter}
                 </Link>
               </li>
               <li>
-                <Link href="/status" className="text-gray-400 hover:text-white text-sm">
-                  Durum Sayfası
+                <Link href={`/${lang}/status`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.statusPage}
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-white text-sm">
-                  Gizlilik Politikası
+                <Link href={`/${lang}/privacy`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.privacy}
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-400 hover:text-white text-sm">
-                  Kullanım Koşulları
+                <Link href={`/${lang}/terms`} className="text-gray-400 hover:text-white text-sm">
+                  {translations.footer.terms}
                 </Link>
               </li>
             </ul>
@@ -120,7 +153,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-800">
           <p className="text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} ClusterEye. Tüm hakları saklıdır.
+            &copy; {new Date().getFullYear()} ClusterEye. {translations.footer.copyright}
           </p>
         </div>
       </div>

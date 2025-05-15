@@ -1,58 +1,169 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
 import { FaServer, FaDatabase, FaCheckCircle, FaExclamationTriangle, FaTimesCircle, FaHistory, FaInfoCircle, FaSync, FaCloudDownloadAlt } from 'react-icons/fa';
+import { Language, LangParams } from '@/app/i18n';
 
-export default function Status() {
+// Status page translations
+const translations = {
+  tr: {
+    title: "Sistem Durumu",
+    subtitle: "ClusterEye hizmetlerinin güncel durumunu takip edin.",
+    statusOverview: {
+      operational: "Tüm sistemler çalışıyor",
+      degradedPerformance: "Bazı sistemlerde performans sorunu",
+      partialOutage: "Bazı sistemlerde kesinti",
+      majorOutage: "Büyük sistem kesintisi",
+      lastUpdated: "Son güncelleme",
+      refresh: "Yenile",
+      allOperational: "Tüm ClusterEye hizmetleri normal şekilde çalışıyor.",
+      someIssues: "Bazı ClusterEye hizmetlerinde sorunlar yaşanıyor. Aşağıdaki tablodan detayları görebilirsiniz."
+    },
+    servicesTable: {
+      title: "Servis Durumu",
+      service: "Servis",
+      description: "Açıklama",
+      status: "Durum",
+      lastUpdated: "Son Güncelleme",
+      statuses: {
+        operational: "Çalışıyor",
+        degradedPerformance: "Performans Sorunu",
+        partialOutage: "Kısmi Kesinti",
+        majorOutage: "Büyük Kesinti",
+        unknown: "Bilinmiyor"
+      }
+    },
+    incidents: {
+      current: {
+        title: "Güncel Sorunlar",
+        noActiveIncidents: "Aktif sorun bulunmuyor",
+        noActiveIncidentsDesc: "Şu anda bilinen bir servis kesintisi veya sorun yok."
+      },
+      resolved: {
+        title: "Çözülen Sorunlar"
+      },
+      statuses: {
+        investigating: "İnceleniyor",
+        identified: "Tanımlandı",
+        monitoring: "İzleniyor",
+        resolved: "Çözüldü",
+        unknown: "Bilinmiyor"
+      }
+    },
+    subscribe: {
+      title: "Durum Bildirimleri Alın",
+      description: "ClusterEye servislerindeki kesintiler ve planlanmış bakımlar hakkında gerçek zamanlı bildirimler almak için kaydolun.",
+      placeholder: "E-posta adresiniz",
+      button: "Abone Ol"
+    }
+  },
+  en: {
+    title: "System Status",
+    subtitle: "Track the current status of ClusterEye services.",
+    statusOverview: {
+      operational: "All systems operational",
+      degradedPerformance: "Some systems have performance issues",
+      partialOutage: "Some systems are experiencing outages",
+      majorOutage: "Major system outage",
+      lastUpdated: "Last updated",
+      refresh: "Refresh",
+      allOperational: "All ClusterEye services are operating normally.",
+      someIssues: "Some ClusterEye services are experiencing issues. You can see the details in the table below."
+    },
+    servicesTable: {
+      title: "Service Status",
+      service: "Service",
+      description: "Description",
+      status: "Status",
+      lastUpdated: "Last Updated",
+      statuses: {
+        operational: "Operational",
+        degradedPerformance: "Performance Issues",
+        partialOutage: "Partial Outage",
+        majorOutage: "Major Outage",
+        unknown: "Unknown"
+      }
+    },
+    incidents: {
+      current: {
+        title: "Current Issues",
+        noActiveIncidents: "No active incidents",
+        noActiveIncidentsDesc: "There are currently no known service outages or issues."
+      },
+      resolved: {
+        title: "Resolved Issues"
+      },
+      statuses: {
+        investigating: "Investigating",
+        identified: "Identified",
+        monitoring: "Monitoring",
+        resolved: "Resolved",
+        unknown: "Unknown"
+      }
+    },
+    subscribe: {
+      title: "Receive Status Notifications",
+      description: "Sign up to receive real-time notifications about outages and planned maintenance on ClusterEye services.",
+      placeholder: "Your email address",
+      button: "Subscribe"
+    }
+  }
+};
+
+export default function Status({ params }: { params: LangParams }) {
+  // @ts-ignore - Next.js'in yeni sürümlerinde params bir Promise olduğu için React.use() kullanıyoruz
+  const lang = use(params).lang;
+  const t = translations[lang];
+  
   // Demo amaçlı çeşitli hizmet durumları - gerçek uygulamada API'den alınır
   const [services, setServices] = useState([
     {
       id: 1,
-      name: "ClusterEye Dashboard",
+      name: lang === 'tr' ? "ClusterEye Dashboard" : "ClusterEye Dashboard",
       status: "operational", // operational, degraded-performance, partial-outage, major-outage
-      description: "Web arayüzü ve kontrol paneli",
+      description: lang === 'tr' ? "Web arayüzü ve kontrol paneli" : "Web interface and control panel",
       updatedAt: "2023-12-01T14:30:00Z",
     },
     {
       id: 2,
-      name: "Monitoring API",
+      name: lang === 'tr' ? "Monitoring API" : "Monitoring API",
       status: "operational",
-      description: "Ana izleme API hizmeti",
+      description: lang === 'tr' ? "Ana izleme API hizmeti" : "Main monitoring API service",
       updatedAt: "2023-12-01T14:30:00Z",
     },
     {
       id: 3,
-      name: "Veritabanı Agentleri",
+      name: lang === 'tr' ? "Veritabanı Agentleri" : "Database Agents",
       status: "operational",
-      description: "Veritabanlarını izleyen agent sistemleri",
+      description: lang === 'tr' ? "Veritabanlarını izleyen agent sistemleri" : "Agent systems monitoring databases",
       updatedAt: "2023-12-01T14:30:00Z",
     },
     {
       id: 4,
-      name: "Alarm & Bildirim Sistemi",
+      name: lang === 'tr' ? "Alarm & Bildirim Sistemi" : "Alarm & Notification System",
       status: "degraded-performance",
-      description: "E-posta ve SMS bildirimleri",
+      description: lang === 'tr' ? "E-posta ve SMS bildirimleri" : "Email and SMS notifications",
       updatedAt: "2023-12-01T13:15:00Z",
     },
     {
       id: 5,
-      name: "AI Analiz Motoru",
+      name: lang === 'tr' ? "AI Analiz Motoru" : "AI Analysis Engine",
       status: "operational",
-      description: "Yapay zeka destekli analiz sistemi",
+      description: lang === 'tr' ? "Yapay zeka destekli analiz sistemi" : "AI-powered analysis system",
       updatedAt: "2023-12-01T14:30:00Z",
     },
     {
       id: 6,
-      name: "Yedekleme Kontrolü",
+      name: lang === 'tr' ? "Yedekleme Kontrolü" : "Backup Control",
       status: "operational",
-      description: "Veritabanı yedekleme izleme sistemi",
+      description: lang === 'tr' ? "Veritabanı yedekleme izleme sistemi" : "Database backup monitoring system",
       updatedAt: "2023-12-01T14:30:00Z",
     },
     {
       id: 7,
-      name: "Log Analiz Sistemi",
+      name: lang === 'tr' ? "Log Analiz Sistemi" : "Log Analysis System",
       status: "partial-outage",
-      description: "Veritabanı log analizi",
+      description: lang === 'tr' ? "Veritabanı log analizi" : "Database log analysis",
       updatedAt: "2023-12-01T10:45:00Z",
     }
   ]);
@@ -61,78 +172,96 @@ export default function Status() {
   const [incidents, setIncidents] = useState([
     {
       id: 1,
-      title: "Log Analiz Sistemi - Kısmi Kesinti",
+      title: lang === 'tr' ? "Log Analiz Sistemi - Kısmi Kesinti" : "Log Analysis System - Partial Outage",
       status: "investigating", // investigating, identified, monitoring, resolved
       date: "2023-12-01T10:45:00Z",
       updates: [
         {
           id: 1,
           status: "investigating",
-          message: "Log analiz sisteminde yavaşlama ve kısmi erişim sorunları yaşanıyor. Teknik ekibimiz sorunu araştırıyor.",
+          message: lang === 'tr' 
+            ? "Log analiz sisteminde yavaşlama ve kısmi erişim sorunları yaşanıyor. Teknik ekibimiz sorunu araştırıyor." 
+            : "The log analysis system is experiencing slowdowns and partial access issues. Our technical team is investigating the problem.",
           createdAt: "2023-12-01T10:45:00Z",
         },
         {
           id: 2,
           status: "identified",
-          message: "Sorunun bir veri işleme darboğazından kaynaklandığı tespit edildi. Ekibimiz çözüm üzerinde çalışıyor.",
+          message: lang === 'tr'
+            ? "Sorunun bir veri işleme darboğazından kaynaklandığı tespit edildi. Ekibimiz çözüm üzerinde çalışıyor."
+            : "The issue has been identified as a data processing bottleneck. Our team is working on a solution.",
           createdAt: "2023-12-01T11:15:00Z",
         }
       ]
     },
     {
       id: 2,
-      title: "Alarm & Bildirim Sistemi - Performans Sorunu",
+      title: lang === 'tr' ? "Alarm & Bildirim Sistemi - Performans Sorunu" : "Alarm & Notification System - Performance Issue",
       status: "monitoring",
       date: "2023-12-01T13:15:00Z",
       updates: [
         {
           id: 1,
           status: "investigating",
-          message: "Bildirim sisteminde gecikmeler tespit edildi. Sorun araştırılıyor.",
+          message: lang === 'tr'
+            ? "Bildirim sisteminde gecikmeler tespit edildi. Sorun araştırılıyor."
+            : "Delays have been detected in the notification system. The issue is being investigated.",
           createdAt: "2023-12-01T13:15:00Z",
         },
         {
           id: 2,
           status: "identified",
-          message: "Sorun e-posta gönderim servisindeki bir gecikme olarak tanımlandı.",
+          message: lang === 'tr'
+            ? "Sorun e-posta gönderim servisindeki bir gecikme olarak tanımlandı."
+            : "The issue has been identified as a delay in the email delivery service.",
           createdAt: "2023-12-01T13:25:00Z",
         },
         {
           id: 3,
           status: "monitoring",
-          message: "Geçici bir çözüm uygulandı. Sistem performansı izleniyor.",
+          message: lang === 'tr'
+            ? "Geçici bir çözüm uygulandı. Sistem performansı izleniyor."
+            : "A temporary solution has been implemented. System performance is being monitored.",
           createdAt: "2023-12-01T13:40:00Z",
         }
       ]
     },
     {
       id: 3,
-      title: "API Kesintisi",
+      title: lang === 'tr' ? "API Kesintisi" : "API Outage",
       status: "resolved",
       date: "2023-11-28T09:20:00Z",
       updates: [
         {
           id: 1,
           status: "investigating",
-          message: "API servisinde kesintiler yaşanıyor. Teknik ekip sorunu araştırıyor.",
+          message: lang === 'tr'
+            ? "API servisinde kesintiler yaşanıyor. Teknik ekip sorunu araştırıyor."
+            : "The API service is experiencing outages. The technical team is investigating the issue.",
           createdAt: "2023-11-28T09:20:00Z",
         },
         {
           id: 2,
           status: "identified",
-          message: "Sorun bir altyapı güncellemesinden kaynaklanıyor.",
+          message: lang === 'tr'
+            ? "Sorun bir altyapı güncellemesinden kaynaklanıyor."
+            : "The issue is caused by an infrastructure update.",
           createdAt: "2023-11-28T09:35:00Z",
         },
         {
           id: 3,
           status: "monitoring",
-          message: "Düzeltme uygulandı ve sistem izleniyor.",
+          message: lang === 'tr'
+            ? "Düzeltme uygulandı ve sistem izleniyor."
+            : "A fix has been applied and the system is being monitored.",
           createdAt: "2023-11-28T10:10:00Z",
         },
         {
           id: 4,
           status: "resolved",
-          message: "Tüm sistemler normal şekilde çalışıyor.",
+          message: lang === 'tr'
+            ? "Tüm sistemler normal şekilde çalışıyor."
+            : "All systems are operating normally.",
           createdAt: "2023-11-28T10:45:00Z",
         }
       ]
@@ -146,35 +275,35 @@ export default function Status() {
         return (
           <div className="flex items-center text-green-400">
             <FaCheckCircle className="mr-2" />
-            <span>Çalışıyor</span>
+            <span>{t.servicesTable.statuses.operational}</span>
           </div>
         );
       case "degraded-performance":
         return (
           <div className="flex items-center text-yellow-400">
             <FaExclamationTriangle className="mr-2" />
-            <span>Performans Sorunu</span>
+            <span>{t.servicesTable.statuses.degradedPerformance}</span>
           </div>
         );
       case "partial-outage":
         return (
           <div className="flex items-center text-orange-400">
             <FaExclamationTriangle className="mr-2" />
-            <span>Kısmi Kesinti</span>
+            <span>{t.servicesTable.statuses.partialOutage}</span>
           </div>
         );
       case "major-outage":
         return (
           <div className="flex items-center text-red-400">
             <FaTimesCircle className="mr-2" />
-            <span>Büyük Kesinti</span>
+            <span>{t.servicesTable.statuses.majorOutage}</span>
           </div>
         );
       default:
         return (
           <div className="flex items-center text-gray-400">
             <FaInfoCircle className="mr-2" />
-            <span>Bilinmiyor</span>
+            <span>{t.servicesTable.statuses.unknown}</span>
           </div>
         );
     }
@@ -183,7 +312,7 @@ export default function Status() {
   // Tarih formatlama (basit bir örnek)
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleString('tr-TR', {
+    return date.toLocaleString(lang === 'tr' ? 'tr-TR' : 'en-US', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
@@ -215,23 +344,23 @@ export default function Status() {
     switch (status) {
       case "investigating":
         color = "bg-yellow-500";
-        label = "İnceleniyor";
+        label = t.incidents.statuses.investigating;
         break;
       case "identified":
         color = "bg-orange-500";
-        label = "Tanımlandı";
+        label = t.incidents.statuses.identified;
         break;
       case "monitoring":
         color = "bg-blue-500";
-        label = "İzleniyor";
+        label = t.incidents.statuses.monitoring;
         break;
       case "resolved":
         color = "bg-green-500";
-        label = "Çözüldü";
+        label = t.incidents.statuses.resolved;
         break;
       default:
         color = "bg-gray-500";
-        label = "Bilinmiyor";
+        label = t.incidents.statuses.unknown;
     }
     
     return (
@@ -244,9 +373,9 @@ export default function Status() {
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-purple-800 to-indigo-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Sistem Durumu</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">{t.title}</h1>
           <p className="text-xl text-purple-200 max-w-3xl mx-auto">
-            ClusterEye hizmetlerinin güncel durumunu takip edin.
+            {t.subtitle}
           </p>
         </div>
       </div>
@@ -279,39 +408,39 @@ export default function Status() {
                 <div>
                   <h2 className="text-2xl font-bold text-white">
                     {overallStatus === "operational" 
-                      ? "Tüm sistemler çalışıyor" 
+                      ? t.statusOverview.operational
                       : overallStatus === "degraded-performance"
-                      ? "Bazı sistemlerde performans sorunu"
+                      ? t.statusOverview.degradedPerformance
                       : overallStatus === "partial-outage"
-                      ? "Bazı sistemlerde kesinti"
-                      : "Büyük sistem kesintisi"}
+                      ? t.statusOverview.partialOutage
+                      : t.statusOverview.majorOutage}
                   </h2>
-                  <p className="text-gray-400">Son güncelleme: {formatDate(new Date().toISOString())}</p>
+                  <p className="text-gray-400">{t.statusOverview.lastUpdated}: {formatDate(new Date().toISOString())}</p>
                 </div>
               </div>
               <button className="flex items-center bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
                 <FaSync className="mr-2" />
-                Yenile
+                {t.statusOverview.refresh}
               </button>
             </div>
             <p className="text-gray-300">
               {overallStatus === "operational" 
-                ? "Tüm ClusterEye hizmetleri normal şekilde çalışıyor." 
-                : "Bazı ClusterEye hizmetlerinde sorunlar yaşanıyor. Aşağıdaki tablodan detayları görebilirsiniz."}
+                ? t.statusOverview.allOperational
+                : t.statusOverview.someIssues}
             </p>
           </div>
           
           {/* Services Table */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Servis Durumu</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">{t.servicesTable.title}</h2>
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
               <table className="w-full">
                 <thead>
                   <tr className="bg-gray-900">
-                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300">Servis</th>
-                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300 hidden md:table-cell">Açıklama</th>
-                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300">Durum</th>
-                    <th className="py-4 px-6 text-right text-sm font-semibold text-gray-300 hidden lg:table-cell">Son Güncelleme</th>
+                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300">{t.servicesTable.service}</th>
+                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300 hidden md:table-cell">{t.servicesTable.description}</th>
+                    <th className="py-4 px-6 text-left text-sm font-semibold text-gray-300">{t.servicesTable.status}</th>
+                    <th className="py-4 px-6 text-right text-sm font-semibold text-gray-300 hidden lg:table-cell">{t.servicesTable.lastUpdated}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-700">
@@ -336,13 +465,13 @@ export default function Status() {
           
           {/* Current Incidents */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Güncel Sorunlar</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">{t.incidents.current.title}</h2>
             
             {incidents.filter(incident => incident.status !== "resolved").length === 0 ? (
               <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 text-center">
                 <FaCheckCircle className="h-12 w-12 text-green-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">Aktif sorun bulunmuyor</h3>
-                <p className="text-gray-300">Şu anda bilinen bir servis kesintisi veya sorun yok.</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{t.incidents.current.noActiveIncidents}</h3>
+                <p className="text-gray-300">{t.incidents.current.noActiveIncidentsDesc}</p>
               </div>
             ) : (
               <div className="space-y-6">
@@ -378,7 +507,7 @@ export default function Status() {
           
           {/* Recent Resolved Incidents */}
           <div>
-            <h2 className="text-2xl font-bold text-white mb-6">Çözülen Sorunlar</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">{t.incidents.resolved.title}</h2>
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
               <div className="divide-y divide-gray-700">
                 {incidents
@@ -414,18 +543,18 @@ export default function Status() {
                 <FaCloudDownloadAlt className="h-16 w-16 text-purple-400 mx-auto" />
               </div>
               <div className="flex-grow text-center md:text-left">
-                <h3 className="text-xl font-bold text-white mb-2">Durum Bildirimleri Alın</h3>
+                <h3 className="text-xl font-bold text-white mb-2">{t.subscribe.title}</h3>
                 <p className="text-gray-300 mb-4">
-                  ClusterEye servislerindeki kesintiler ve planlanmış bakımlar hakkında gerçek zamanlı bildirimler almak için kaydolun.
+                  {t.subscribe.description}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <input 
                     type="email" 
-                    placeholder="E-posta adresiniz"
+                    placeholder={t.subscribe.placeholder}
                     className="flex-grow py-3 px-4 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                   />
                   <button className="py-3 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-lg transition duration-300">
-                    Abone Ol
+                    {t.subscribe.button}
                   </button>
                 </div>
               </div>

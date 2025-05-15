@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "features": "Features",
+    "docs": "Documentation",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "footer": {
+    "description": "Agent-based database monitoring and management solution. Full support for MSSQL, MongoDB, and PostgreSQL.",
+    "product": "Product",
+    "company": "Company",
+    "support": "Support",
+    "updates": "Updates",
+    "about": "About",
+    "careers": "Careers",
+    "helpCenter": "Help Center",
+    "statusPage": "Status Page",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "All rights reserved."
+  },
+  "metadata": {
+    "title": "ClusterEye - Database Monitoring and Management Platform",
+    "description": "Monitor and manage your MSSQL, MongoDB, and PostgreSQL databases with agent-based technology."
+  }
+} 
