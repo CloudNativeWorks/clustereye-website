@@ -11,6 +11,10 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER || 'user@example.com',
     pass: process.env.EMAIL_PASSWORD || 'password',
   },
+  tls: {
+    // SSL doğrulamasını devre dışı bırakmak için (güvenlik riski içerir)
+    rejectUnauthorized: process.env.EMAIL_REJECT_UNAUTHORIZED !== 'false'
+  }
 });
 
 // Hata nesnesi için tip tanımlaması
