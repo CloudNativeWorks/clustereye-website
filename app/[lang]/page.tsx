@@ -149,7 +149,7 @@ const translations = {
   }
 };
 
-export default async function Home({ params }: { params: LangParams }) {
+export default async function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
   // Next.js'in yeni sürümlerinde params bir Promise olabilir
   // Bu sayfada halihazırda await ile çözüyoruz, bu yüzden React.use() kullanımına ihtiyaç yok
   // @ts-ignore - TypeScript tip hatası için

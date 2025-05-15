@@ -110,9 +110,10 @@ const translations = {
   }
 };
 
-export default function Status({ params }: { params: LangParams }) {
+export default function Status({ params }: { params: LangParams | Promise<{lang: Language}> }) {
   // @ts-ignore - Next.js'in yeni sürümlerinde params bir Promise olduğu için React.use() kullanıyoruz
-  const lang = use(params).lang;
+  const resolvedParams = use(params);
+  const lang = resolvedParams.lang;
   const t = translations[lang];
   
   // Demo amaçlı çeşitli hizmet durumları - gerçek uygulamada API'den alınır

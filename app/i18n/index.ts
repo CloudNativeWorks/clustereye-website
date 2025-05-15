@@ -5,9 +5,12 @@ import enTranslations from './locales/en.json';
 export const languages = ['tr', 'en'] as const;
 export type Language = typeof languages[number];
 
-// React.use için kullanılacak params tipi
-export interface LangParams {
-  lang: Language;
+// Next.js 15'in beklentilerine uygun Promise tipi olarak params
+export interface LangParams extends Promise<{lang: Language}> {}
+
+// Native Promise<T> tipinden LangParams tipine dönüştürmek için yardımcı fonksiyon
+export function toLangParams(promise: Promise<{lang: Language}>): LangParams {
+  return promise as LangParams;
 }
 
 const dictionaries = {
