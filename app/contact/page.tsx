@@ -15,6 +15,7 @@ export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [errorDetails, setErrorDetails] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -28,6 +29,7 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
+    setErrorDetails(null);
     
     try {
       const response = await fetch('/api/contact', {
@@ -56,6 +58,23 @@ export default function Contact() {
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Bir hata oluştu');
+      
+      // Hata detaylarını ayarla
+      try {
+        const errorResponse = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }).then(res => res.json());
+        
+        if (errorResponse.details) {
+          setErrorDetails(errorResponse.details);
+        }
+      } catch {
+        // Hata detayları alınamadıysa yoksay
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -97,7 +116,13 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {error && (
                     <div className="bg-red-900/30 border border-red-500 text-white p-4 rounded-lg">
-                      {error}
+                      <p className="font-medium">{error}</p>
+                      {errorDetails && (
+                        <p className="text-sm mt-2 text-red-200">Teknik detay: {errorDetails}</p>
+                      )}
+                      <p className="text-xs mt-4 text-red-300">
+                        Hatanın devam etmesi durumunda lütfen info@clustereye.com adresine e-posta gönderin.
+                      </p>
                     </div>
                   )}
                   

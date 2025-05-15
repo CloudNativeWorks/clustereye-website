@@ -13,6 +13,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Hata nesnesi için tip tanımlaması
+interface MailError extends Error {
+  code?: string;
+  responseCode?: number;
+  command?: string;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -34,6 +41,17 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Log SMTP ayarlarını (şifreyi gizleyerek)
+    console.log('SMTP Configuration:', {
+      host: process.env.EMAIL_SERVER || 'smtp.example.com',
+      port: Number(process.env.EMAIL_PORT) || 587,
+      secure: process.env.EMAIL_SECURE === 'true',
+      auth: {
+        user: process.env.EMAIL_USER || 'user@example.com',
+        pass: process.env.EMAIL_PASSWORD ? '******' : 'not set',
+      },
+    });
 
     // E-posta içeriği
     const mailOptions = {
@@ -69,9 +87,17 @@ ${message}
       // Nodemailer yapılandırması doğruysa e-postayı gönder
       if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
         await transporter.sendMail(mailOptions);
+        console.log('E-posta başarıyla gönderildi:', {
+          to: mailOptions.to,
+          subject: mailOptions.subject,
+        });
       } else {
         // Yapılandırma eksikse sadece loglama yapılır (test/geliştirme için)
-        console.log('E-posta gönderimi simüle edildi:', mailOptions);
+        console.log('E-posta gönderimi simüle edildi:', {
+          to: mailOptions.to,
+          subject: mailOptions.subject,
+          note: 'EMAIL_USER veya EMAIL_PASSWORD değişkenleri ayarlanmamış',
+        });
       }
       
       // Başarılı yanıt
@@ -79,17 +105,30 @@ ${message}
         { success: true, message: 'Mesajınız başarıyla gönderildi' },
         { status: 200 }
       );
-    } catch (emailError) {
-      console.error('E-posta gönderimi hatası:', emailError);
+    } catch (error) {
+      const emailError = error as MailError;
+      console.error('E-posta gönderimi detaylı hata:', emailError);
+      
+      // Hata mesajını ve detayları döndür
       return NextResponse.json(
-        { error: 'E-posta gönderilirken bir hata oluştu' },
+        { 
+          error: 'E-posta gönderilirken bir hata oluştu', 
+          details: emailError.message || 'Bilinmeyen hata',
+          code: emailError.code || 'UNKNOWN',
+          responseCode: emailError.responseCode || null,
+          command: emailError.command || null
+        },
         { status: 500 }
       );
     }
   } catch (error) {
-    console.error('Form gönderimi hatası:', error);
+    console.error('Form gönderimi detaylı hata:', error);
+    
     return NextResponse.json(
-      { error: 'Mesajınız gönderilirken bir hata oluştu' },
+      { 
+        error: 'Mesajınız gönderilirken bir hata oluştu',
+        details: error instanceof Error ? error.message : 'Bilinmeyen hata'
+      },
       { status: 500 }
     );
   }
