@@ -101,11 +101,6 @@ export default function Footer({ translations }: FooterProps) {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">{translations.footer.company}</h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <Link href={`/${lang}/about`} className="text-gray-400 hover:text-white text-sm">
-                  {translations.footer.about}
-                </Link>
-              </li>
-              <li>
                 <Link href={`/${lang}/career`} className="text-gray-400 hover:text-white text-sm">
                   {translations.footer.careers}
                 </Link>
