@@ -35,7 +35,7 @@ const translations = {
           excerpt: "Machine learning algoritmalarını kullanarak veritabanı performans sorunlarını nasıl önceden tespit edebileceğinizi öğrenin.",
           image: "/images/blog/featured1.jpg",
           author: "Ahmet Yılmaz",
-          date: "15 Mayıs 2023",
+          date: "15 Mayıs 2025",
           category: "Yapay Zeka",
           readTime: "10 dk okuma"
         },
@@ -45,7 +45,7 @@ const translations = {
           excerpt: "PostgreSQL'in son sürümündeki önemli geliştirmeler ve bunların veritabanı performansınıza etkileri.",
           image: "/images/blog/featured2.jpg",
           author: "Zeynep Kaya",
-          date: "28 Nisan 2023",
+          date: "28 Nisan 2025",
           category: "Veritabanı Yönetimi",
           readTime: "8 dk okuma"
         }
@@ -60,7 +60,7 @@ const translations = {
           excerpt: "Veritabanı izleme konusunda proaktif ve reaktif yaklaşımlar arasındaki farkları ve her birinin avantajlarını inceliyoruz.",
           image: "/images/blog/post1.jpg",
           author: "Mehmet Demir",
-          date: "10 Haziran 2023",
+          date: "10 Haziran 2025",
           category: "En İyi Uygulamalar",
           readTime: "7 dk okuma"
         },
@@ -70,7 +70,7 @@ const translations = {
           excerpt: "MongoDB Atlas'ı ClusterEye ile entegre ederek bulut tabanlı veritabanlarınızı nasıl izleyebileceğinizi adım adım öğrenin.",
           image: "/images/blog/post2.jpg",
           author: "Elif Şahin",
-          date: "2 Haziran 2023",
+          date: "2 Haziran 2025",
           category: "Veritabanı Yönetimi",
           readTime: "6 dk okuma"
         },
@@ -80,7 +80,7 @@ const translations = {
           excerpt: "Veritabanı sistemlerinizi siber tehditlere karşı güvence altına almak için uygulamanız gereken 10 kritik güvenlik pratiği.",
           image: "/images/blog/post3.jpg",
           author: "Ali Yıldız",
-          date: "25 Mayıs 2023",
+          date: "25 Mayıs 2025",
           category: "Güvenlik",
           readTime: "9 dk okuma"
         },
@@ -90,7 +90,7 @@ const translations = {
           excerpt: "SQL Server 2022'de yeni gelen performans iyileştirmelerini ve bunların iş yükleriniz üzerindeki etkilerini keşfedin.",
           image: "/images/blog/post4.jpg",
           author: "Selin Kara",
-          date: "18 Mayıs 2023",
+          date: "18 Mayıs 2025",
           category: "Performans Optimizasyonu",
           readTime: "7 dk okuma"
         }
@@ -133,7 +133,7 @@ const translations = {
           excerpt: "Learn how to use machine learning algorithms to detect database performance issues before they occur.",
           image: "/images/blog/featured1.jpg",
           author: "Ahmet Yilmaz",
-          date: "May 15, 2023",
+          date: "May 15, 2025",
           category: "Artificial Intelligence",
           readTime: "10 min read"
         },
@@ -143,7 +143,7 @@ const translations = {
           excerpt: "Important improvements in the latest version of PostgreSQL and their effects on your database performance.",
           image: "/images/blog/featured2.jpg",
           author: "Zeynep Kaya",
-          date: "April 28, 2023",
+          date: "April 28, 2025",
           category: "Database Management",
           readTime: "8 min read"
         }
@@ -158,7 +158,7 @@ const translations = {
           excerpt: "We examine the differences between proactive and reactive approaches to database monitoring and the advantages of each.",
           image: "/images/blog/post1.jpg",
           author: "Mehmet Demir",
-          date: "June 10, 2023",
+          date: "June 10, 2025",
           category: "Best Practices",
           readTime: "7 min read"
         },
@@ -168,7 +168,7 @@ const translations = {
           excerpt: "Learn step by step how to monitor your cloud-based databases by integrating MongoDB Atlas with ClusterEye.",
           image: "/images/blog/post2.jpg",
           author: "Elif Sahin",
-          date: "June 2, 2023",
+          date: "June 2, 2025",
           category: "Database Management",
           readTime: "6 min read"
         },
@@ -178,7 +178,7 @@ const translations = {
           excerpt: "10 critical security practices you should implement to secure your database systems against cyber threats.",
           image: "/images/blog/post3.jpg",
           author: "Ali Yildiz",
-          date: "May 25, 2023",
+          date: "May 25, 2025",
           category: "Security",
           readTime: "9 min read"
         },
@@ -188,7 +188,7 @@ const translations = {
           excerpt: "Discover the new performance improvements in SQL Server 2022 and their impact on your workloads.",
           image: "/images/blog/post4.jpg",
           author: "Selin Kara",
-          date: "May 18, 2023",
+          date: "May 18, 2025",
           category: "Performance Optimization",
           readTime: "7 min read"
         }

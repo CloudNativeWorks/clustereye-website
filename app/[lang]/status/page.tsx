@@ -123,49 +123,49 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
       name: lang === 'tr' ? "ClusterEye Dashboard" : "ClusterEye Dashboard",
       status: "operational", // operational, degraded-performance, partial-outage, major-outage
       description: lang === 'tr' ? "Web arayüzü ve kontrol paneli" : "Web interface and control panel",
-      updatedAt: "2023-12-01T14:30:00Z",
+      updatedAt: "2025-12-01T14:30:00Z",
     },
     {
       id: 2,
       name: lang === 'tr' ? "Monitoring API" : "Monitoring API",
       status: "operational",
       description: lang === 'tr' ? "Ana izleme API hizmeti" : "Main monitoring API service",
-      updatedAt: "2023-12-01T14:30:00Z",
+      updatedAt: "2025-12-01T14:30:00Z",
     },
     {
       id: 3,
       name: lang === 'tr' ? "Veritabanı Agentleri" : "Database Agents",
       status: "operational",
       description: lang === 'tr' ? "Veritabanlarını izleyen agent sistemleri" : "Agent systems monitoring databases",
-      updatedAt: "2023-12-01T14:30:00Z",
+      updatedAt: "2025-12-01T14:30:00Z",
     },
     {
       id: 4,
       name: lang === 'tr' ? "Alarm & Bildirim Sistemi" : "Alarm & Notification System",
       status: "degraded-performance",
       description: lang === 'tr' ? "E-posta ve SMS bildirimleri" : "Email and SMS notifications",
-      updatedAt: "2023-12-01T13:15:00Z",
+      updatedAt: "2025-12-01T13:15:00Z",
     },
     {
       id: 5,
       name: lang === 'tr' ? "AI Analiz Motoru" : "AI Analysis Engine",
       status: "operational",
       description: lang === 'tr' ? "Yapay zeka destekli analiz sistemi" : "AI-powered analysis system",
-      updatedAt: "2023-12-01T14:30:00Z",
+      updatedAt: "2025-12-01T14:30:00Z",
     },
     {
       id: 6,
       name: lang === 'tr' ? "Yedekleme Kontrolü" : "Backup Control",
       status: "operational",
       description: lang === 'tr' ? "Veritabanı yedekleme izleme sistemi" : "Database backup monitoring system",
-      updatedAt: "2023-12-01T14:30:00Z",
+      updatedAt: "2025-12-01T14:30:00Z",
     },
     {
       id: 7,
       name: lang === 'tr' ? "Log Analiz Sistemi" : "Log Analysis System",
       status: "partial-outage",
       description: lang === 'tr' ? "Veritabanı log analizi" : "Database log analysis",
-      updatedAt: "2023-12-01T10:45:00Z",
+      updatedAt: "2025-12-01T10:45:00Z",
     }
   ]);
   
@@ -175,7 +175,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
       id: 1,
       title: lang === 'tr' ? "Log Analiz Sistemi - Kısmi Kesinti" : "Log Analysis System - Partial Outage",
       status: "investigating", // investigating, identified, monitoring, resolved
-      date: "2023-12-01T10:45:00Z",
+      date: "2025-12-01T10:45:00Z",
       updates: [
         {
           id: 1,
@@ -183,7 +183,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr' 
             ? "Log analiz sisteminde yavaşlama ve kısmi erişim sorunları yaşanıyor. Teknik ekibimiz sorunu araştırıyor." 
             : "The log analysis system is experiencing slowdowns and partial access issues. Our technical team is investigating the problem.",
-          createdAt: "2023-12-01T10:45:00Z",
+          createdAt: "2025-12-01T10:45:00Z",
         },
         {
           id: 2,
@@ -191,7 +191,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Sorunun bir veri işleme darboğazından kaynaklandığı tespit edildi. Ekibimiz çözüm üzerinde çalışıyor."
             : "The issue has been identified as a data processing bottleneck. Our team is working on a solution.",
-          createdAt: "2023-12-01T11:15:00Z",
+          createdAt: "2025-12-01T11:15:00Z",
         }
       ]
     },
@@ -199,7 +199,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
       id: 2,
       title: lang === 'tr' ? "Alarm & Bildirim Sistemi - Performans Sorunu" : "Alarm & Notification System - Performance Issue",
       status: "monitoring",
-      date: "2023-12-01T13:15:00Z",
+      date: "2025-12-01T13:15:00Z",
       updates: [
         {
           id: 1,
@@ -207,7 +207,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Bildirim sisteminde gecikmeler tespit edildi. Sorun araştırılıyor."
             : "Delays have been detected in the notification system. The issue is being investigated.",
-          createdAt: "2023-12-01T13:15:00Z",
+          createdAt: "2025-12-01T13:15:00Z",
         },
         {
           id: 2,
@@ -215,7 +215,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Sorun e-posta gönderim servisindeki bir gecikme olarak tanımlandı."
             : "The issue has been identified as a delay in the email delivery service.",
-          createdAt: "2023-12-01T13:25:00Z",
+          createdAt: "2025-12-01T13:25:00Z",
         },
         {
           id: 3,
@@ -223,7 +223,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Geçici bir çözüm uygulandı. Sistem performansı izleniyor."
             : "A temporary solution has been implemented. System performance is being monitored.",
-          createdAt: "2023-12-01T13:40:00Z",
+          createdAt: "2025-12-01T13:40:00Z",
         }
       ]
     },
@@ -231,7 +231,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
       id: 3,
       title: lang === 'tr' ? "API Kesintisi" : "API Outage",
       status: "resolved",
-      date: "2023-11-28T09:20:00Z",
+      date: "2025-11-28T09:20:00Z",
       updates: [
         {
           id: 1,
@@ -239,7 +239,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "API servisinde kesintiler yaşanıyor. Teknik ekip sorunu araştırıyor."
             : "The API service is experiencing outages. The technical team is investigating the issue.",
-          createdAt: "2023-11-28T09:20:00Z",
+          createdAt: "2025-11-28T09:20:00Z",
         },
         {
           id: 2,
@@ -247,7 +247,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Sorun bir altyapı güncellemesinden kaynaklanıyor."
             : "The issue is caused by an infrastructure update.",
-          createdAt: "2023-11-28T09:35:00Z",
+          createdAt: "2025-11-28T09:35:00Z",
         },
         {
           id: 3,
@@ -255,7 +255,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Düzeltme uygulandı ve sistem izleniyor."
             : "A fix has been applied and the system is being monitored.",
-          createdAt: "2023-11-28T10:10:00Z",
+          createdAt: "2025-11-28T10:10:00Z",
         },
         {
           id: 4,
@@ -263,7 +263,7 @@ export default function Status({ params }: { params: LangParams | Promise<{lang:
           message: lang === 'tr'
             ? "Tüm sistemler normal şekilde çalışıyor."
             : "All systems are operating normally.",
-          createdAt: "2023-11-28T10:45:00Z",
+          createdAt: "2025-11-28T10:45:00Z",
         }
       ]
     }

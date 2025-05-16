@@ -12,7 +12,7 @@ const translations = {
     subtitle: "ClusterEye hizmetlerini kullanmadan önce lütfen bu koşulları dikkatlice okuyun.",
     lastUpdated: {
       label: "Son Güncelleme:",
-      date: "10 Haziran 2023",
+      date: "10 Haziran 2025",
       print: "Yazdır"
     },
     tableOfContents: {
@@ -173,7 +173,7 @@ const translations = {
     subtitle: "Please read these terms carefully before using ClusterEye services.",
     lastUpdated: {
       label: "Last Updated:",
-      date: "June 10, 2023",
+      date: "June 10, 2025",
       print: "Print"
     },
     tableOfContents: {

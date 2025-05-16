@@ -12,7 +12,7 @@ const translations = {
     subtitle: "ClusterEye olarak verilerinizin gizliliği ve güvenliği bizim için en yüksek önceliktir.",
     lastUpdated: {
       label: "Son Güncelleme:",
-      date: "10 Haziran 2023",
+      date: "10 Haziran 2025",
       print: "Yazdır"
     },
     tableOfContents: {
@@ -161,7 +161,7 @@ const translations = {
     subtitle: "At ClusterEye, the privacy and security of your data is our highest priority.",
     lastUpdated: {
       label: "Last Updated:",
-      date: "June 10, 2023",
+      date: "June 10, 2025",
       print: "Print"
     },
     tableOfContents: {
