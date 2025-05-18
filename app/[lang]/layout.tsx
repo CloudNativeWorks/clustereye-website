@@ -4,6 +4,7 @@ import "../globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { getTranslations, type Language } from "../i18n";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default async function RootLayout({
         <Navigation translations={translations} />
         <main className="pt-16">{children}</main>
         <Footer translations={translations} />
+        <Analytics />
       </body>
     </html>
   );
