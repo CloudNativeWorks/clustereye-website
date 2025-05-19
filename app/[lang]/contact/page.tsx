@@ -112,11 +112,6 @@ const translations = {
         title: "Email",
         general: "info@clustereye.com",
         support: "support@clustereye.com"
-      },
-      phone: {
-        title: "Phone",
-        office: "+90 (212) 461 63 00",
-        mobile: "+90 (532) 670 64 94"
       }
     },
     map: "Google Maps"
@@ -360,19 +355,6 @@ export default function Contact({ params }: { params: LangParams | Promise<{lang
                       <h3 className="text-lg font-medium text-white">{t.contactInfo.email.title}</h3>
                       <p className="text-gray-300 mt-1">{t.contactInfo.email.general}</p>
                       <p className="text-gray-300">{t.contactInfo.email.support}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
-                        <FaPhone className="w-5 h-5 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-white">{t.contactInfo.phone.title}</h3>
-                      <p className="text-gray-300 mt-1">{t.contactInfo.phone.office}</p>
-                      <p className="text-gray-300">{t.contactInfo.phone.mobile}</p>
                     </div>
                   </div>
                 </div>
