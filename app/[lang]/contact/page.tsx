@@ -60,12 +60,6 @@ const translations = {
         title: "Telefon",
         office: "+90 (212) 461 63 00",
         mobile: "+90 (532) 670 64 94"
-      },
-      address: {
-        title: "Adres",
-        line1: "Levent, Büyükdere Cad. No:123",
-        line2: "Şişli, İstanbul, 34394",
-        line3: "Türkiye"
       }
     },
     map: "Google Maps"
@@ -123,12 +117,6 @@ const translations = {
         title: "Phone",
         office: "+90 (212) 461 63 00",
         mobile: "+90 (532) 670 64 94"
-      },
-      address: {
-        title: "Address",
-        line1: "Levent, Büyükdere Cad. No:123",
-        line2: "Şişli, Istanbul, 34394",
-        line3: "Turkey"
       }
     },
     map: "Google Maps"
@@ -387,30 +375,6 @@ export default function Contact({ params }: { params: LangParams | Promise<{lang
                       <p className="text-gray-300">{t.contactInfo.phone.mobile}</p>
                     </div>
                   </div>
-                  
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
-                        <FaMapMarkerAlt className="w-5 h-5 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-white">{t.contactInfo.address.title}</h3>
-                      <p className="text-gray-300 mt-1">
-                        {t.contactInfo.address.line1}<br />
-                        {t.contactInfo.address.line2}<br />
-                        {t.contactInfo.address.line3}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Google Map */}
-              <div className="bg-gray-800 p-2 rounded-xl border border-gray-700 h-[300px] overflow-hidden">
-                <div className="w-full h-full rounded-lg bg-gray-700 flex items-center justify-center text-gray-400">
-                  {/* Google Maps iframe can be used here */}
-                  <p>{t.map}</p>
                 </div>
               </div>
             </div>
