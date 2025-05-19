@@ -73,7 +73,8 @@ const translations = {
       },
       error: {
         message: "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
-        details: "Teknik detay:"
+        details: "Teknik detay:",
+        persistentError: "Hatanın devam etmesi durumunda lütfen info@clustereye.com adresine e-posta gönderin."
       }
     },
     benefits: {
@@ -169,7 +170,8 @@ const translations = {
       },
       error: {
         message: "An error occurred. Please try again later.",
-        details: "Technical detail:"
+        details: "Technical detail:",
+        persistentError: "If the error persists, please send an email to info@clustereye.com."
       }
     },
     benefits: {
@@ -248,17 +250,52 @@ export default function Demo({ params }: { params: LangParams | Promise<{lang: L
     setErrorDetails(null);
     
     try {
-      // Gerçek bir uygulamada, buraya bir API çağrısı ekleyebilirsiniz
-      // Örnek: API endpoint: /api/demo-request
+      const response = await fetch('/api/demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
       
-      // API çağrısını simüle etmek için bir timeout ekleyelim
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const data = await response.json();
       
-      // Form başarıyla gönderildi
+      if (!response.ok) {
+        throw new Error(data.error || (lang === 'tr' ? 'Bir hata oluştu' : 'An error occurred'));
+      }
+      
+      // Form successfully submitted
       setFormSubmitted(true);
+      // Reset form data
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        role: '',
+        db_type: [],
+        db_count: '',
+        message: '',
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : (lang === 'tr' ? 'Bir hata oluştu' : 'An error occurred'));
-      setErrorDetails(err instanceof Error ? err.message : null);
+      
+      // Set error details
+      try {
+        const errorResponse = await fetch('/api/demo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }).then(res => res.json());
+        
+        if (errorResponse.details) {
+          setErrorDetails(errorResponse.details);
+        }
+      } catch {
+        // Ignore if error details cannot be retrieved
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -309,6 +346,7 @@ export default function Demo({ params }: { params: LangParams | Promise<{lang: L
                         {errorDetails && (
                           <p className="text-red-300 mt-2 text-sm">{t.form.error.details} {errorDetails}</p>
                         )}
+                        <p className="text-red-300 mt-2 text-sm italic">{t.form.error.persistentError}</p>
                       </div>
                     )}
                     
