@@ -124,11 +124,13 @@ export default function Footer({ translations }: FooterProps) {
           <div className="col-span-1">
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">{translations.footer.support}</h3>
             <ul className="mt-4 space-y-2">
+              {/* Help center link temporarily removed - will be activated later
               <li>
                 <Link href={`/${lang}/help`} className="text-gray-400 hover:text-white text-sm">
                   {translations.footer.helpCenter}
                 </Link>
               </li>
+              */}
               <li>
                 <Link href={`/${lang}/status`} className="text-gray-400 hover:text-white text-sm">
                   {translations.footer.statusPage}
