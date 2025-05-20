@@ -59,7 +59,9 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Language };
 }) {
-  const translations = await getTranslations(params.lang);
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+  const translations = await getTranslations(lang);
   
   const jsonLd = {
     "@context": "https://schema.org",
@@ -81,9 +83,9 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang={params.lang} className="scroll-smooth">
+    <html lang={lang} className="scroll-smooth">
       <head>
-        <link rel="canonical" href={`https://clustereye.com/${params.lang}`} />
+        <link rel="canonical" href={`https://clustereye.com/${lang}`} />
         
         {/* Schema.org structured data */}
         <Script
@@ -92,9 +94,9 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans`}>
+      <body className={`${inter.variable} font-sans antialiased bg-black text-white`}>
         <Navigation translations={translations} />
-        <main>{children}</main>
+        <main className="pt-16">{children}</main>
         <Footer translations={translations} />
         <Analytics />
       </body>

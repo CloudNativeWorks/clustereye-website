@@ -4,6 +4,7 @@ import { FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, F
          FaExchangeAlt, FaChartBar, FaLayerGroup } from "react-icons/fa";
 import { getTranslations, type Language, type LangParams } from "../i18n";
 import ClientSideIconSection from "@/app/components/ClientSideIconSection";
+import HeroSection from "@/app/components/HeroSection";
 
 // Ana sayfanın çevirileri
 const translations = {
@@ -203,78 +204,14 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-4 sm:px-8 md:px-16 lg:px-24">
-        <div className="absolute inset-0 z-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(#7C3AED_1px,transparent_1px)] [background-size:20px_20px]"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
-            <div className="lg:w-1/2">
-              <div className="flex items-center mb-6">
-                <Image 
-                  src="/clustereye_logo.png" 
-                  alt="ClusterEye Logo" 
-                  width={72} 
-                  height={72} 
-                  className="mr-4" 
-                  style={{ width: 'auto', height: 'auto' }}
-                />
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                  ClusterEye
-                </h1>
-              </div>
-              <p className="text-xl sm:text-2xl mb-8 text-gray-300">
-                {t.hero.description}
-              </p>
-              <p className="text-gray-400 mb-8 text-lg">
-                {t.hero.subText}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link 
-                  href={`/${lang}/demo`} 
-                  className="px-8 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition duration-300 font-medium"
-                >
-                  {t.hero.demo}
-                </Link>
-                <Link 
-                  href={`/${lang}/docs`} 
-                  className="px-8 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition duration-300 font-medium border border-gray-700"
-                >
-                  {t.hero.docs}
-                </Link>
-              </div>
-            </div>
-            
-            <div className="lg:w-1/2">
-              <div className="relative w-full aspect-video flex items-center justify-center p-4">
-                {/* MacBook Mockup */}
-                <div className="relative w-full max-w-3xl group transition-all duration-500 hover:scale-[1.02]">
-                  {/* MacBook Body */}
-                  <div className="relative w-full bg-gray-900 rounded-t-xl pt-[5%] pb-[4%] px-[5%] border-[8px] border-gray-800 shadow-[0_0_20px_rgba(139,92,246,0.25)]">
-                    {/* MacBook Screen */}
-                    <div className="relative aspect-[16/10] rounded-md overflow-hidden border border-gray-700">
-                      <Image
-                        src="/images/desktop_screenshot.png" 
-                        alt="ClusterEye Desktop Application Interface" 
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        priority
-                      />
-                    </div>
-                    {/* Camera */}
-                    <div className="absolute top-[2%] left-1/2 transform -translate-x-1/2 w-[2%] h-[1.5%] bg-gray-700 rounded-full"></div>
-                  </div>
-                  {/* MacBook Base */}
-                  <div className="relative w-full h-4 bg-gradient-to-b from-gray-800 to-gray-700 rounded-b-xl"></div>
-                  {/* MacBook Bottom Line */}
-                  <div className="relative w-[90%] h-[1px] mx-auto bg-gray-600"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection 
+        title="ClusterEye"
+        description={t.hero.description}
+        subText={t.hero.subText}
+        demoText={t.hero.demo}
+        docsText={t.hero.docs}
+        lang={lang}
+      />
 
       {/* AI Integration Section */}
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-gray-900 to-gray-800">
