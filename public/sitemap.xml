@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home Pages -->
+  <url>
+    <loc>https://clustereye.com/tr</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Features Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/features</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/features" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/features" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/features</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/features" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/features" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Documentation Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/docs</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/docs" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/docs" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/docs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/docs" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/docs" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Pricing Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/pricing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/pricing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/pricing" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/pricing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/blog</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/blog" />
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/blog" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/blog" />
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/about</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/about" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/about" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/about" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/contact</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/contact" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/contact" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/contact" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Demo Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/demo</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/demo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/demo" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/demo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/demo" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/demo" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy Policy Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/privacy" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/privacy" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Terms Pages -->
+  <url>
+    <loc>https://clustereye.com/tr/terms</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/terms" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://clustereye.com/en/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://clustereye.com/en/terms" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://clustereye.com/tr/terms" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+</urlset> 
