@@ -64,6 +64,26 @@ const translations = {
         desc: "AI modelleri, sorgu yapısını analiz ederek performans iyileştirmeleri önerir"
       }
     },
+    cluster: {
+      title: "Veritabanı Kümenizi Tam Kontrol Altına Alın",
+      desc: "ClusterEye, PostgreSQL için eksik olan otomatik yük devretme (auto-failover) özelliğini sunarak, veritabanı kümeleri için daha yüksek erişilebilirlik ve güvenilirlik sağlar.",
+      autoFailover: {
+        title: "Otomatik Yük Devretme (Auto-Failover)",
+        desc: "PostgreSQL'in doğal yapısında bulunmayan otomatik yük devretme özelliğini ClusterEye ile kazanın. Birincil sunucu çöktüğünde, sistem otomatik olarak yedek sunucuya geçiş yaparak kesintisiz hizmet sunumunu garanti eder."
+      },
+      monitoring: {
+        title: "Gerçek Zamanlı Küme İzleme",
+        desc: "Tüm küme node'larını tek bir panelden izleyin. Replikasyon gecikmesi, disk kullanımı ve sorgu performansı gibi kritik metrikleri anlık olarak görüntüleyin."
+      },
+      scaling: {
+        title: "Ölçeklendirme ve Yönetim",
+        desc: "İhtiyaçlarınız doğrultusunda kümenizi kolayca büyütün veya küçültün. Yeni node ekleme, çıkarma ve bakım işlemlerini ClusterEye kontrol panelinden gerçekleştirin."
+      },
+      screenshot: {
+        title: "PostgreSQL Küme Kontrolü",
+        desc: "ClusterEye ile veritabanı kümelerinizi kolayca yönetin ve izleyin"
+      }
+    },
     platforms: {
       title: "Her Platformda Erişim",
       ios: {
@@ -133,6 +153,26 @@ const translations = {
       screenshot: {
         title: "Query Optimization with Artificial Intelligence",
         desc: "AI models analyze query structure to suggest performance improvements"
+      }
+    },
+    cluster: {
+      title: "Take Full Control of Your Database Cluster",
+      desc: "ClusterEye provides the missing auto-failover functionality for PostgreSQL, ensuring higher availability and reliability for database clusters.",
+      autoFailover: {
+        title: "Automatic Failover",
+        desc: "Gain automatic failover capabilities not natively available in PostgreSQL. When the primary server fails, the system automatically switches to the standby server, ensuring uninterrupted service delivery."
+      },
+      monitoring: {
+        title: "Real-Time Cluster Monitoring",
+        desc: "Monitor all cluster nodes from a single dashboard. View critical metrics like replication lag, disk usage, and query performance in real-time."
+      },
+      scaling: {
+        title: "Scaling and Management",
+        desc: "Easily scale your cluster up or down based on your needs. Add, remove, and maintain nodes from the ClusterEye control panel."
+      },
+      screenshot: {
+        title: "PostgreSQL Cluster Control",
+        desc: "Easily manage and monitor your database clusters with ClusterEye"
       }
     },
     platforms: {
@@ -330,6 +370,84 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                     {t.ai.assistant.desc}
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Control Your Cluster Section */}
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-gray-800 to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-block p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 mb-4">
+              <FaDatabase className="h-8 w-8 text-purple-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold">{t.cluster.title}</h2>
+            <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
+              {t.cluster.desc}
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1 bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl">
+              <div className="flex items-start mb-6">
+                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
+                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t.cluster.autoFailover.title}</h3>
+                  <p className="text-gray-300">
+                    {t.cluster.autoFailover.desc}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start mb-6">
+                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
+                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t.cluster.monitoring.title}</h3>
+                  <p className="text-gray-300">
+                    {t.cluster.monitoring.desc}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
+                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{t.cluster.scaling.title}</h3>
+                  <p className="text-gray-300">
+                    {t.cluster.scaling.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="order-1 md:order-2 relative rounded-xl overflow-hidden border border-purple-900/50 shadow-xl shadow-purple-900/20">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
+              <Image
+                src="/images/cluster_control.png" 
+                alt="PostgreSQL Cluster Control" 
+                width={600}
+                height={400}
+                className="w-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 p-4">
+                <h3 className="text-lg font-semibold text-white">{t.cluster.screenshot.title}</h3>
+                <p className="text-sm text-gray-300">
+                  {t.cluster.screenshot.desc}
+                </p>
               </div>
             </div>
           </div>
