@@ -1,14 +1,12 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic,
          FaExchangeAlt, FaChartBar, FaLayerGroup } from "react-icons/fa";
 import { getTranslations, type Language, type LangParams } from "../i18n";
-import { useState, useEffect } from 'react';
+import ClientSideIconSection from "@/app/components/ClientSideIconSection";
 
 // Ana sayfanın çevirileri
-const siteTranslations = {
+const translations = {
   tr: {
     hero: {
       description: "Veritabanlarınızı akıllı agent'larla izleyin, yönetin ve optimize edin",
@@ -193,43 +191,14 @@ const siteTranslations = {
   }
 };
 
-export default function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
-  const [lang, setLang] = useState<Language>('en');
-  const [translations, setTranslations] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    async function loadData() {
-      try {
-        // Get language parameter
-        const resolvedParams = await Promise.resolve(params);
-        const currentLang = resolvedParams.lang;
-        setLang(currentLang);
-        
-        // Get translations
-        const globalT = await getTranslations(currentLang);
-        
-        // Set translations from the appropriate language object
-        setTranslations(currentLang === 'tr' ? siteTranslations.tr : siteTranslations.en);
-        
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error loading translations:", error);
-        setIsLoading(false);
-      }
-    }
-    
-    loadData();
-  }, [params]);
-  
-  // Show loading state while fetching translations
-  if (isLoading || !translations) {
-    return <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex items-center justify-center">
-      <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
-    </div>;
-  }
-  
-  const t = translations;
+export default async function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
+  // Next.js'in yeni sürümlerinde params bir Promise olabilir
+  // Bu sayfada halihazırda await ile çözüyoruz, bu yüzden React.use() kullanımına ihtiyaç yok
+  // @ts-ignore - TypeScript tip hatası için
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+  const t = translations[lang];
+  const globalT = await getTranslations(lang);
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -424,41 +393,20 @@ export default function Home({ params }: { params: LangParams | Promise<{lang: L
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl">
-              <div className="flex items-start mb-6">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <FaExchangeAlt className="h-6 w-6 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.cluster.autoFailover.title}</h3>
-                  <p className="text-gray-300">
-                    {t.cluster.autoFailover.desc}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start mb-6">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <FaChartBar className="h-6 w-6 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.cluster.monitoring.title}</h3>
-                  <p className="text-gray-300">
-                    {t.cluster.monitoring.desc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <FaLayerGroup className="h-6 w-6 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.cluster.scaling.title}</h3>
-                  <p className="text-gray-300">
-                    {t.cluster.scaling.desc}
-                  </p>
-                </div>
-              </div>
+              <ClientSideIconSection 
+                autoFailover={{
+                  title: t.cluster.autoFailover.title,
+                  desc: t.cluster.autoFailover.desc
+                }}
+                monitoring={{
+                  title: t.cluster.monitoring.title,
+                  desc: t.cluster.monitoring.desc
+                }}
+                scaling={{
+                  title: t.cluster.scaling.title,
+                  desc: t.cluster.scaling.desc
+                }}
+              />
             </div>
             
             <div className="order-1 md:order-2 relative rounded-xl overflow-hidden border border-purple-900/50 shadow-xl shadow-purple-900/20">

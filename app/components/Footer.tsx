@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { getLanguageFromPath } from "@/app/i18n";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from 'react';
+import ClientCopyright from "./ClientCopyright";
 
 interface FooterProps {
   translations: {
@@ -36,12 +36,6 @@ interface FooterProps {
 export default function Footer({ translations }: FooterProps) {
   const pathname = usePathname();
   const lang = getLanguageFromPath(pathname);
-  
-  const [currentYear, setCurrentYear] = useState(2025);
-  
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
   
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
@@ -158,9 +152,7 @@ export default function Footer({ translations }: FooterProps) {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800">
-          <p className="text-center text-sm text-gray-400">
-            &copy; {currentYear} ClusterEye. {translations.footer.copyright}
-          </p>
+          <ClientCopyright copyright={translations.footer.copyright} />
         </div>
       </div>
     </footer>
