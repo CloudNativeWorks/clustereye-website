@@ -1,10 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic } from "react-icons/fa";
+import { FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic,
+         FaExchangeAlt, FaChartBar, FaLayerGroup } from "react-icons/fa";
 import { getTranslations, type Language, type LangParams } from "../i18n";
+import { useState, useEffect } from 'react';
 
 // Ana sayfanın çevirileri
-const translations = {
+const siteTranslations = {
   tr: {
     hero: {
       description: "Veritabanlarınızı akıllı agent'larla izleyin, yönetin ve optimize edin",
@@ -189,14 +193,43 @@ const translations = {
   }
 };
 
-export default async function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
-  // Next.js'in yeni sürümlerinde params bir Promise olabilir
-  // Bu sayfada halihazırda await ile çözüyoruz, bu yüzden React.use() kullanımına ihtiyaç yok
-  // @ts-ignore - TypeScript tip hatası için
-  const resolvedParams = await params;
-  const lang = resolvedParams.lang;
-  const t = translations[lang];
-  const globalT = await getTranslations(lang);
+export default function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
+  const [lang, setLang] = useState<Language>('en');
+  const [translations, setTranslations] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    async function loadData() {
+      try {
+        // Get language parameter
+        const resolvedParams = await Promise.resolve(params);
+        const currentLang = resolvedParams.lang;
+        setLang(currentLang);
+        
+        // Get translations
+        const globalT = await getTranslations(currentLang);
+        
+        // Set translations from the appropriate language object
+        setTranslations(currentLang === 'tr' ? siteTranslations.tr : siteTranslations.en);
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error loading translations:", error);
+        setIsLoading(false);
+      }
+    }
+    
+    loadData();
+  }, [params]);
+  
+  // Show loading state while fetching translations
+  if (isLoading || !translations) {
+    return <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex items-center justify-center">
+      <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+    </div>;
+  }
+  
+  const t = translations;
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -393,9 +426,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
             <div className="order-2 md:order-1 bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl">
               <div className="flex items-start mb-6">
                 <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
+                  <FaExchangeAlt className="h-6 w-6 text-purple-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t.cluster.autoFailover.title}</h3>
@@ -407,9 +438,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
               
               <div className="flex items-start mb-6">
                 <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
+                  <FaChartBar className="h-6 w-6 text-purple-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t.cluster.monitoring.title}</h3>
@@ -421,9 +450,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
 
               <div className="flex items-start">
                 <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 flex-shrink-0">
-                  <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                  </svg>
+                  <FaLayerGroup className="h-6 w-6 text-purple-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{t.cluster.scaling.title}</h3>
