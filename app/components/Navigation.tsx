@@ -59,9 +59,6 @@ export default function Navigation({ translations }: NavigationProps) {
             <Link href={`/${lang}/pricing`} className="text-gray-300 hover:text-white transition duration-300">
               {translations.navigation.pricing}
             </Link>
-            <Link href={`/${lang}/blog`} className="text-gray-300 hover:text-white transition duration-300">
-              {translations.navigation.blog}
-            </Link>
             <Link 
               href={`/${lang}/contact`} 
               className="ml-4 px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white transition duration-300"
@@ -115,12 +112,6 @@ export default function Navigation({ translations }: NavigationProps) {
               className="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               {translations.navigation.pricing}
-            </Link>
-            <Link 
-              href={`/${lang}/blog`} 
-              className="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              {translations.navigation.blog}
             </Link>
             <Link 
               href={`/${lang}/contact`} 
