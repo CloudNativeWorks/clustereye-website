@@ -109,11 +109,6 @@ export default function Footer({ translations }: FooterProps) {
               </li>
               */}
               <li>
-                <Link href={`/${lang}/blog`} className="text-gray-400 hover:text-white text-sm">
-                  {translations.navigation.blog}
-                </Link>
-              </li>
-              <li>
                 <Link href={`/${lang}/contact`} className="text-gray-400 hover:text-white text-sm">
                   {translations.navigation.contact}
                 </Link>
