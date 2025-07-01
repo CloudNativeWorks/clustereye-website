@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from 'react';
+import React, { use } from 'react';
 import { FaCheck, FaServer, FaDatabase, FaRobot, FaBrain, FaCog } from 'react-icons/fa';
 import Link from 'next/link';
 import { Language, LangParams } from '@/app/i18n';
@@ -18,7 +18,7 @@ const translations = {
     popularChoice: "Popüler Seçim",
     perMonth: "/ ay her node için",
     perYear: "/ yıl her node için",
-    contactUs: "İletişime Geçin",
+    contactUs: "Bizimle İletişime Geçin",
     getStarted: "Şimdi Başlayın",
     featureComparison: "Özellik Karşılaştırması",
     features: {
@@ -104,8 +104,8 @@ const getPlans = (t: any) => [
   {
     name: "Starter",
     description: t === translations.tr ? "Küçük ve orta ölçekli projeler için" : "For small and medium-sized projects",
-    monthlyPrice: "₺499",
-    yearlyPrice: "₺4,990",
+    monthlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
+    yearlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
     features: t === translations.tr
       ? [
           "5 veritabanı bağlantısı",
@@ -140,8 +140,8 @@ const getPlans = (t: any) => [
   {
     name: "Professional",
     description: t === translations.tr ? "Büyük ve orta ölçekli projeler için" : "For large and medium-sized projects",
-    monthlyPrice: "₺899",
-    yearlyPrice: "₺8,990",
+    monthlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
+    yearlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
     popular: true,
     features: t === translations.tr
       ? [
@@ -177,8 +177,8 @@ const getPlans = (t: any) => [
   {
     name: "Enterprise",
     description: t === translations.tr ? "Kurumsal müşteriler için" : "For enterprise customers",
-    monthlyPrice: t === translations.tr ? "İletişime geçin" : "Contact us",
-    yearlyPrice: t === translations.tr ? "İletişime geçin" : "Contact us",
+    monthlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
+    yearlyPrice: t === translations.tr ? "Bizimle İletişime Geçin" : "Contact Us",
     features: t === translations.tr
       ? [
           "Sınırsız veritabanı bağlantısı",
@@ -213,7 +213,6 @@ export default function Pricing({ params }: { params: LangParams | Promise<{lang
   const resolvedParams = use(params);
   const lang = resolvedParams.lang;
   const t = translations[lang];
-  const [billingPeriod, setBillingPeriod] = useState('monthly');
   const plans = getPlans(t);
 
   return (
@@ -231,31 +230,6 @@ export default function Pricing({ params }: { params: LangParams | Promise<{lang
       {/* Pricing Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Billing Toggle */}
-          <div className="flex justify-center mb-12">
-            <div className="bg-gray-800 p-1 rounded-lg inline-flex">
-              <button
-                onClick={() => setBillingPeriod('monthly')}
-                className={`px-4 py-2 rounded-md ${
-                  billingPeriod === 'monthly'
-                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white'
-                    : 'text-gray-300 hover:text-white'
-                } transition-all duration-200`}
-              >
-                {t.billing.monthly}
-              </button>
-              <button
-                onClick={() => setBillingPeriod('yearly')}
-                className={`px-4 py-2 rounded-md ${
-                  billingPeriod === 'yearly'
-                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white'
-                    : 'text-gray-300 hover:text-white'
-                } transition-all duration-200`}
-              >
-                {t.billing.yearly} <span className="text-xs ml-1 opacity-75">{t.billing.savings}</span>
-              </button>
-            </div>
-          </div>
           
           {/* Price Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -279,22 +253,17 @@ export default function Pricing({ params }: { params: LangParams | Promise<{lang
                   <p className="text-gray-400 mb-6">{plan.description}</p>
                   
                   <div className="flex items-baseline mb-8">
-                    <span className="text-4xl font-bold text-white">
-                      {billingPeriod === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}
+                    <span className="text-3xl font-bold text-white">
+                      {plan.monthlyPrice}
                     </span>
-                    {plan.monthlyPrice !== (lang === 'tr' ? "İletişime geçin" : "Contact us") && (
-                      <span className="text-gray-400 ml-2">{billingPeriod === 'monthly' ? t.perMonth : t.perYear}</span>
-                    )}
                   </div>
                   
                   <button className={`w-full py-3 px-4 rounded-lg mb-8 font-medium transition-all duration-200 ${
-                    plan.name === 'Enterprise' 
-                      ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white' 
-                      : plan.popular 
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
-                        : 'bg-gray-700 hover:bg-gray-600 text-white'
+                    plan.popular 
+                      ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
+                      : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
                   }`}>
-                    {plan.name === 'Enterprise' ? t.contactUs : t.getStarted}
+                    {t.contactUs}
                   </button>
                   
                   <div className="space-y-3">
