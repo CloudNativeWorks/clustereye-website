@@ -253,18 +253,21 @@ export default function Pricing({ params }: { params: LangParams | Promise<{lang
                   <p className="text-gray-400 mb-6">{plan.description}</p>
                   
                   <div className="flex items-baseline mb-8">
-                    <span className="text-3xl font-bold text-white">
-                      {plan.monthlyPrice}
+                    <span className="text-2xl font-medium text-gray-400">
+                      {lang === 'tr' ? 'Özel Fiyatlandırma' : 'Custom Pricing'}
                     </span>
                   </div>
                   
-                  <button className={`w-full py-3 px-4 rounded-lg mb-8 font-medium transition-all duration-200 ${
-                    plan.popular 
-                      ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
-                      : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
-                  }`}>
+                  <Link 
+                    href={`/${lang}/contact`}
+                    className={`w-full py-3 px-4 rounded-lg mb-8 font-medium transition-all duration-200 text-center inline-block ${
+                      plan.popular 
+                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
+                        : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
+                    }`}
+                  >
                     {t.contactUs}
-                  </button>
+                  </Link>
                   
                   <div className="space-y-3">
                     {plan.features.map((feature, i) => (
