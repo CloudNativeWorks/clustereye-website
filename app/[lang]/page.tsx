@@ -15,7 +15,21 @@ const translations = {
       description: "Veritabanlarınızı akıllı agent'larla izleyin, yönetin ve optimize edin",
       subText: "MSSQL, MongoDB ve PostgreSQL veritabanlarınızı Cloud API ve gRPC teknolojileri ile tek bir platformdan takip edin ve yönetin.",
       demo: "Demo İste",
-      docs: "Dökümantasyon"
+      docs: "Dökümantasyon",
+      carousel: [
+        {
+          title: "Merkezi Dashboard",
+          description: "Tüm veritabanlarınızı tek bir ekrandan izleyin"
+        },
+        {
+          title: "Sorgu Analizi",
+          description: "Yapay zeka destekli performans analizi"
+        },
+        {
+          title: "Cluster Yönetimi",
+          description: "Otomatik failover ve ölçeklendirme"
+        }
+      ]
     },
     features: {
       title: "Neden ClusterEye?",
@@ -106,7 +120,21 @@ const translations = {
       description: "Monitor, manage, and optimize your databases with intelligent agents",
       subText: "Track and manage your MSSQL, MongoDB, and PostgreSQL databases from a single platform with Cloud API and gRPC technologies.",
       demo: "Request Demo",
-      docs: "Documentation"
+      docs: "Documentation",
+      carousel: [
+        {
+          title: "Centralized Dashboard",
+          description: "Monitor all your databases from a single screen"
+        },
+        {
+          title: "Query Analysis",
+          description: "AI-powered performance analysis"
+        },
+        {
+          title: "Cluster Management",
+          description: "Automatic failover and scaling"
+        }
+      ]
     },
     features: {
       title: "Why ClusterEye?",
@@ -203,6 +231,24 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
   const t = translations[lang];
   const globalT = await getTranslations(lang);
 
+  const carouselItems = [
+    {
+      image: "/images/dashboard_new.png",
+      title: t.hero.carousel[0].title,
+      description: t.hero.carousel[0].description
+    },
+    {
+      image: "/images/ai_query_analysis.png",
+      title: t.hero.carousel[1].title,
+      description: t.hero.carousel[1].description
+    },
+    {
+      image: "/images/cluster_control.png",
+      title: t.hero.carousel[2].title,
+      description: t.hero.carousel[2].description
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
@@ -213,6 +259,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
         demoText={t.hero.demo}
         docsText={t.hero.docs}
         lang={lang}
+        carouselItems={carouselItems}
       />
 
       {/* AI Integration Section */}

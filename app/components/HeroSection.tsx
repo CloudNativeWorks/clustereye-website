@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import HeroCarousel, { CarouselItem } from './HeroCarousel';
 
 // Client-side only import of the animation component
 const DatabaseClusterBackground = dynamic(
@@ -18,6 +19,7 @@ interface HeroSectionProps {
   demoText: string;
   docsText: string;
   lang: string;
+  carouselItems?: CarouselItem[];
 }
 
 export default function HeroSection({
@@ -26,7 +28,8 @@ export default function HeroSection({
   subText,
   demoText,
   docsText,
-  lang
+  lang,
+  carouselItems
 }: HeroSectionProps) {
   return (
     <section className="relative pt-20 pb-32 px-4 sm:px-8 md:px-16 lg:px-24">
@@ -83,14 +86,18 @@ export default function HeroSection({
                 {/* MacBook Body */}
                 <div className="relative w-full bg-gray-900 rounded-t-xl pt-[5%] pb-[4%] px-[5%] border-[8px] border-gray-800 shadow-[0_0_20px_rgba(139,92,246,0.25)]">
                   {/* MacBook Screen */}
-                  <div className="relative aspect-[16/10] rounded-md overflow-hidden border border-gray-700">
-                    <Image
-                      src="/images/dashboard_new.png"
-                      alt="ClusterEye Desktop Application Interface"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      priority
-                    />
+                  <div className="relative aspect-[16/10] rounded-md overflow-hidden border border-gray-700 bg-gray-900">
+                    {carouselItems && carouselItems.length > 0 ? (
+                      <HeroCarousel items={carouselItems} />
+                    ) : (
+                      <Image
+                        src="/images/dashboard_new.png"
+                        alt="ClusterEye Desktop Application Interface"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        priority
+                      />
+                    )}
                   </div>
                   {/* Camera */}
                   <div className="absolute top-[2%] left-1/2 transform -translate-x-1/2 w-[2%] h-[1.5%] bg-gray-700 rounded-full"></div>
