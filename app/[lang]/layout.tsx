@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import { getTranslations, type Language } from "../i18n";
+import { getTranslations, type Language, languages } from "../i18n";
 import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
 
@@ -13,10 +13,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+export async function generateStaticParams() {
+  return languages.map((lang) => ({ lang }));
+}
+
 export async function generateMetadata({ params }: { params: { lang: Language } }): Promise<Metadata> {
   const resolvedParams = await params;
   const translations = await getTranslations(resolvedParams.lang);
-  
+
   return {
     title: translations.metadata.title,
     description: translations.metadata.description,
@@ -62,7 +66,7 @@ export default async function RootLayout({
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   const translations = await getTranslations(lang);
-  
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -86,7 +90,7 @@ export default async function RootLayout({
     <html lang={lang} className="scroll-smooth">
       <head>
         <link rel="canonical" href={`https://clustereye.com/${lang}`} />
-        
+
         {/* Schema.org structured data */}
         <Script
           id="schema-org-data"
