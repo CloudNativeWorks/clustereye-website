@@ -37,7 +37,7 @@ export default function Navigation({ translations }: NavigationProps) {
           <div className="flex items-center">
             <Link href={`/${lang}`} className="flex items-center">
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/clustereye_logo.png`}
+                src="/clustereye_logo.png"
                 alt="ClusterEye Logo"
                 width={40}
                 height={40}

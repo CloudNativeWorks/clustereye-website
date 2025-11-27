@@ -271,7 +271,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
               <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ai_query_analysis.png`}
+                src="/images/ai_query_analysis.png"
                 alt="AI-Powered Query Analysis"
                 width={600}
                 height={400}
@@ -353,7 +353,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
               <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/cluster_control.png`}
+                src="/images/cluster_control.png"
                 alt="PostgreSQL Cluster Control"
                 width={600}
                 height={400}
@@ -419,7 +419,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
                   {/* iPhone Inner Screen */}
                   <div className="relative w-full h-full overflow-hidden rounded-[2rem] z-10">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ios_screenshot.png`}
+                      src="/images/ios_screenshot.png"
                       alt="ClusterEye iOS App"
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
