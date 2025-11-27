@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic,
-         FaExchangeAlt, FaChartBar, FaLayerGroup } from "react-icons/fa";
+import {
+  FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic,
+  FaExchangeAlt, FaChartBar, FaLayerGroup
+} from "react-icons/fa";
 import { getTranslations, type Language, type LangParams } from "../i18n";
 import ClientSideIconSection from "@/app/components/ClientSideIconSection";
 import HeroSection from "@/app/components/HeroSection";
@@ -192,7 +194,7 @@ const translations = {
   }
 };
 
-export default async function Home({ params }: { params: LangParams | Promise<{lang: Language}> }) {
+export default async function Home({ params }: { params: LangParams | Promise<{ lang: Language }> }) {
   // Next.js'in yeni sürümlerinde params bir Promise olabilir
   // Bu sayfada halihazırda await ile çözüyoruz, bu yüzden React.use() kullanımına ihtiyaç yok
   // @ts-ignore - TypeScript tip hatası için
@@ -200,11 +202,11 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
   const lang = resolvedParams.lang;
   const t = translations[lang];
   const globalT = await getTranslations(lang);
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
-      <HeroSection 
+      <HeroSection
         title="ClusterEye"
         description={t.hero.description}
         subText={t.hero.subText}
@@ -225,7 +227,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
               {t.ai.desc}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
               <div className="flex items-start mb-5">
@@ -239,7 +241,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start mb-5">
                 <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
                   <FaChartLine className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
@@ -264,13 +266,13 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 </div>
               </div>
             </div>
-            
+
             <div className="relative rounded-xl overflow-hidden border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
               <Image
-                src="/images/ai_query_analysis.png" 
-                alt="AI-Powered Query Analysis" 
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ai_query_analysis.png`}
+                alt="AI-Powered Query Analysis"
                 width={600}
                 height={400}
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -298,7 +300,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
               <div className="flex items-start">
                 <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
@@ -328,10 +330,10 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
               {t.cluster.desc}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
-              <ClientSideIconSection 
+              <ClientSideIconSection
                 autoFailover={{
                   title: t.cluster.autoFailover.title,
                   desc: t.cluster.autoFailover.desc
@@ -346,13 +348,13 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 }}
               />
             </div>
-            
+
             <div className="order-1 md:order-2 relative rounded-xl overflow-hidden border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
               <Image
-                src="/images/cluster_control.png" 
-                alt="PostgreSQL Cluster Control" 
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/cluster_control.png`}
+                alt="PostgreSQL Cluster Control"
                 width={600}
                 height={400}
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -372,7 +374,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t.platforms.title}</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
               <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 p-6 rounded-xl border border-indigo-800/50">
@@ -385,15 +387,15 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 </p>
                 <ul className="space-y-2 text-gray-300 mb-6">
                   <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span> 
+                    <span className="text-purple-400 mr-2">✓</span>
                     {t.platforms.ios.feature1}
                   </li>
                   <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span> 
+                    <span className="text-purple-400 mr-2">✓</span>
                     {t.platforms.ios.feature2}
                   </li>
                   <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span> 
+                    <span className="text-purple-400 mr-2">✓</span>
                     {t.platforms.ios.feature3}
                   </li>
                 </ul>
@@ -405,7 +407,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 </div>
               </div>
             </div>
-            
+
             <div className="order-1 md:order-2 flex justify-center">
               {/* iPhone Mockup */}
               <div className="relative w-full max-w-[280px] group transition-all duration-500 hover:scale-[1.03]">
@@ -413,30 +415,30 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 <div className="relative mx-auto w-full aspect-[9/19.5] bg-gray-800 rounded-[3rem] overflow-hidden border-[14px] border-gray-900 shadow-[0_0_20px_rgba(139,92,246,0.25)]">
                   {/* iPhone Notch */}
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-xl z-20"></div>
-                  
+
                   {/* iPhone Inner Screen */}
                   <div className="relative w-full h-full overflow-hidden rounded-[2rem] z-10">
                     <Image
-                      src="/images/ios_screenshot.png" 
-                      alt="ClusterEye iOS App" 
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/ios_screenshot.png`}
+                      alt="ClusterEye iOS App"
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       priority
                     />
                   </div>
-                  
+
                   {/* iPhone Bottom Line (Home Indicator) */}
                   <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-white rounded-full z-20"></div>
-                  
+
                   {/* Speaker */}
                   <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-16 h-[4px] bg-gray-700 rounded-full z-20"></div>
-                  
+
                   {/* Side Buttons */}
                   <div className="absolute top-24 -right-[14px] w-[2px] h-12 bg-gray-700 rounded-l-sm"></div>
                   <div className="absolute top-[140px] -right-[14px] w-[2px] h-16 bg-gray-700 rounded-l-sm"></div>
                   <div className="absolute top-24 -left-[14px] w-[2px] h-12 bg-gray-700 rounded-r-sm"></div>
                 </div>
-                
+
                 {/* Reflection effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-indigo-500/10 to-purple-500/15 rounded-[3rem] pointer-events-none"></div>
               </div>
@@ -449,7 +451,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">{t.features.title}</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="p-6 bg-gray-900 rounded-xl hover:bg-gray-850 transition duration-300 border border-gray-700 group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20">
               <div className="flex justify-center mb-4">
@@ -462,7 +464,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 {t.features.multiDb.desc}
               </p>
             </div>
-            
+
             <div className="p-6 bg-gray-900 rounded-xl hover:bg-gray-850 transition duration-300 border border-gray-700 group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full group-hover:from-purple-500 group-hover:to-indigo-500 transition-all duration-300">
@@ -474,7 +476,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 {t.features.agent.desc}
               </p>
             </div>
-            
+
             <div className="p-6 bg-gray-900 rounded-xl hover:bg-gray-850 transition duration-300 border border-gray-700 group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full group-hover:from-purple-500 group-hover:to-indigo-500 transition-all duration-300">
@@ -486,7 +488,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{l
                 {t.features.cloud.desc}
               </p>
             </div>
-            
+
             <div className="p-6 bg-gray-900 rounded-xl hover:bg-gray-850 transition duration-300 border border-gray-700 group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full group-hover:from-purple-500 group-hover:to-indigo-500 transition-all duration-300">

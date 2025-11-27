@@ -44,12 +44,11 @@ export default function HeroSection({
           <div className="lg:w-1/2">
             <div className="flex items-center mb-6">
               <Image
-                src="/clustereye_logo.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/clustereye_logo.png`}
                 alt="ClusterEye Logo"
                 width={72}
                 height={72}
-                className="mr-4"
-                style={{ width: 'auto', height: 'auto' }}
+                className="mr-4 w-[72px] h-[72px] object-contain"
               />
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
                 {title}
@@ -86,7 +85,7 @@ export default function HeroSection({
                   {/* MacBook Screen */}
                   <div className="relative aspect-[16/10] rounded-md overflow-hidden border border-gray-700">
                     <Image
-                      src="/images/dashboard_new.png"
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/dashboard_new.png`}
                       alt="ClusterEye Desktop Application Interface"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
