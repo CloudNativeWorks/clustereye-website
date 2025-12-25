@@ -36,7 +36,7 @@ interface FooterProps {
 export default function Footer({ translations }: FooterProps) {
   const pathname = usePathname();
   const lang = getLanguageFromPath(pathname);
-  
+
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -44,13 +44,12 @@ export default function Footer({ translations }: FooterProps) {
           {/* Branding */}
           <div className="col-span-1 md:col-span-1">
             <Link href={`/${lang}`} className="flex items-center">
-              <Image 
-                src="/clustereye_logo.png" 
-                alt="ClusterEye Logo" 
-                width={36} 
-                height={36} 
-                className="mr-3" 
-                style={{ width: 'auto', height: 'auto' }}
+              <Image
+                src="/clustereye_logo.png"
+                alt="ClusterEye Logo"
+                width={36}
+                height={36}
+                className="mr-3 w-9 h-9 object-contain"
               />
               <span className="text-xl font-bold text-white">ClusterEye</span>
             </Link>
@@ -89,11 +88,7 @@ export default function Footer({ translations }: FooterProps) {
                   {translations.navigation.docs}
                 </Link>
               </li>
-              <li>
-                <Link href={`/${lang}/updates`} className="text-gray-400 hover:text-white text-sm">
-                  {translations.footer.updates}
-                </Link>
-              </li>
+
             </ul>
           </div>
 

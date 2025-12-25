@@ -261,7 +261,7 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
 
   const carouselItems = [
     {
-      image: "/images/dashboard_new.png",
+      image: "/images/dashboard-v2.png",
       title: t.hero.carousel[0].title,
       description: t.hero.carousel[0].description
     },
