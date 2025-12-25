@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaApple, FaBrain, FaBolt, FaChartLine, FaMagic,
-  FaExchangeAlt, FaChartBar, FaLayerGroup
+  FaDatabase, FaCloud, FaRobot, FaSearchPlus, FaBrain, FaBolt, FaChartLine, FaMagic,
+  FaExchangeAlt, FaLayerGroup
 } from "react-icons/fa";
 import { getTranslations, type Language, type LangParams } from "../i18n";
 import ClientSideIconSection from "@/app/components/ClientSideIconSection";
@@ -103,16 +103,30 @@ const translations = {
         desc: "ClusterEye ile veritabanı kümelerinizi kolayca yönetin ve izleyin"
       }
     },
-    platforms: {
-      title: "Her Platformda Erişim",
-      ios: {
-        title: "iOS Mobil Uygulama",
-        desc: "Hareket halindeyken bile veritabanlarınızı takip edin. iOS uygulamamız ile kritik metriklerinizi izleyin, anlık bildirimler alın ve acil müdahaleler gerçekleştirin.",
-        feature1: "Anlık bildirimler ve uyarılar",
-        feature2: "Hızlı müdahale araçları",
-        feature3: "Mobil optimizasyon desteği",
-        button: "iOS Uygulamasını İndir"
+    aiInsights: {
+      title: "AI İçgörüleri & Kök Neden Analizi",
+      desc: "Veritabanı performans sorunlarının kök nedenlerini saniyeler içinde tespit edin. AI algoritmaları, metrikleri ve logları analizerek size sorunun kaynağını ve çözümünü sunar. Geçmişe dönük analizlerle tekrarlayan problemleri ortadan kaldırın."
+    },
+    anomalyDetection: {
+      title: "Gelişmiş Anomali Tespiti",
+      desc: "Sabit eşik değerlerinden kurtulun. Makine öğrenmesi algoritmalarımız veritabanınızın normal davranışını öğrenir ve sadece gerçek anomalilerde sizi uyarır. Kritik ve Uyarı seviyelerindeki sapmaları zaman ekseninde görselleştirin.",
+      stats: {
+        total: "Anomali",
+        critical: "Kritik",
+        warning: "Uyarı"
       }
+    },
+    configDrift: {
+      title: "Konfigürasyon Değişiklik Takibi",
+      desc: "İzinsiz veya hatalı konfigürasyon değişikliklerini anında yakalayın. 'Kim, Ne Zaman, Ne Değiştirdi?' sorularının cevabını kolayca bulun. Fark analizi (diff) ile değişikliklerin etkisini görün ve onay mekanizmalarıyla yönetin.",
+      review: "Bekleyen İnceleme",
+      impact: "Yüksek Etki"
+    },
+    patroni: {
+      title: "Patroni Küme Yönetimi",
+      desc: "PostgreSQL kümelerinizi güvenle yönetin. Failover (Arıza Durumunda Geçiş) ve Switchover (Planlı Geçiş) işlemlerini tek tıkla gerçekleştirin. Replikasyon gecikmelerini ve nodeların durumunu merkezi bir panelden izleyin.",
+      failover: "Failover",
+      switchover: "Switchover"
     }
   },
   en: {
@@ -208,16 +222,30 @@ const translations = {
         desc: "Easily manage and monitor your database clusters with ClusterEye"
       }
     },
-    platforms: {
-      title: "Access on Every Platform",
-      ios: {
-        title: "iOS Mobile App",
-        desc: "Track your databases even while on the move. Monitor your critical metrics, receive instant notifications, and perform emergency interventions with our iOS app.",
-        feature1: "Instant notifications and alerts",
-        feature2: "Quick intervention tools",
-        feature3: "Mobile optimization support",
-        button: "Download iOS App"
+    aiInsights: {
+      title: "AI Insights & Root Cause Analysis",
+      desc: "Identify the root causes of database performance issues in seconds. AI algorithms analyze metrics and logs to provide you with the source of the problem and the solution. Eliminate recurring problems with historical analysis."
+    },
+    anomalyDetection: {
+      title: "Advanced Anomaly Detection",
+      desc: "Get rid of static thresholds. Our machine learning algorithms learn the normal behavior of your database and alert you only on real anomalies. Visualize Critical and Warning level deviations on the timeline.",
+      stats: {
+        total: "Anomalies",
+        critical: "Critical",
+        warning: "Warning"
       }
+    },
+    configDrift: {
+      title: "Configuration Drift Detection",
+      desc: "Catch unauthorized or incorrect configuration changes instantly. Easily answer 'Who Changed What, When?'. See the impact of changes with diff analysis and manage with approval mechanisms.",
+      review: "Pending Review",
+      impact: "High Impact"
+    },
+    patroni: {
+      title: "Patroni Cluster Management",
+      desc: "Manage your PostgreSQL clusters with confidence. Perform Failover and Switchover operations with a single click. Monitor replication lags and node status from a central dashboard.",
+      failover: "Failover",
+      switchover: "Switchover"
     }
   }
 };
@@ -262,12 +290,12 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
         carouselItems={carouselItems}
       />
 
-      {/* AI Integration Section */}
-      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* AI Detailed Features Section */}
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 mb-4">
-              <FaBrain className="h-8 w-8 text-purple-400" />
+              <FaMagic className="h-8 w-8 text-purple-400" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold">{t.ai.title}</h2>
             <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
@@ -275,89 +303,161 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
-              <div className="flex items-start mb-5">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                  <FaBolt className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.ai.config.title}</h3>
-                  <p className="text-gray-300">
-                    {t.ai.config.desc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start mb-5">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                  <FaChartLine className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.ai.query.title}</h3>
-                  <p className="text-gray-300">
-                    {t.ai.query.desc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                  <FaSearchPlus className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.ai.log.title}</h3>
-                  <p className="text-gray-300">
-                    {t.ai.log.desc}
-                  </p>
-                </div>
+          {/* Smart Configuration */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-indigo-500/30 bg-gray-900">
+                <Image
+                  src="/images/ai_configuration.png"
+                  alt="Smart Configuration Analysis"
+                  width={800}
+                  height={600}
+                  className="w-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
-
-            <div className="relative rounded-xl overflow-hidden border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] group">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
-              <Image
-                src="/images/ai_query_analysis.png"
-                alt="AI-Powered Query Analysis"
-                width={600}
-                height={400}
-                className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 p-4">
-                <h3 className="text-lg font-semibold text-white">{t.ai.screenshot.title}</h3>
-                <p className="text-sm text-gray-300">
-                  {t.ai.screenshot.desc}
-                </p>
+            <div className="order-1 lg:order-2">
+              <div className="flex items-center mb-4">
+                <FaBolt className="h-6 w-6 text-yellow-400 mr-3" />
+                <h3 className="text-2xl font-bold">{t.ai.config.title}</h3>
               </div>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                {t.ai.config.desc}
+              </p>
             </div>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
-              <div className="flex items-start">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                  <FaMagic className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
+          {/* Query Performance & Log Analysis Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Query Performance */}
+            <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-500/30 transition-all duration-300 group">
+              <div className="mb-6 relative group/image">
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg blur opacity-25 group-hover/image:opacity-60 transition duration-500"></div>
+                <div className="relative rounded-lg overflow-hidden border border-indigo-500/30 bg-gray-900">
+                  <Image
+                    src="/images/ai_query_analysis.png"
+                    alt="Query Performance Analysis"
+                    width={600}
+                    height={350}
+                    className="w-full object-cover"
+                  />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.ai.anomaly.title}</h3>
-                  <p className="text-gray-300">
-                    {t.ai.anomaly.desc}
-                  </p>
+              </div>
+              <div className="flex items-center mb-4">
+                <FaChartLine className="h-6 w-6 text-green-400 mr-3" />
+                <h3 className="text-xl font-bold">{t.ai.query.title}</h3>
+              </div>
+              <p className="text-gray-300">
+                {t.ai.query.desc}
+              </p>
+            </div>
+
+            {/* Log Analysis */}
+            <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-500/30 transition-all duration-300 group">
+              <div className="mb-6 relative group/image">
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg blur opacity-25 group-hover/image:opacity-60 transition duration-500"></div>
+                <div className="relative rounded-lg overflow-hidden border border-indigo-500/30 bg-gray-900">
+                  <Image
+                    src="/images/ai_log_analysis.png"
+                    alt="Real-Time Log Analysis"
+                    width={600}
+                    height={350}
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center mb-4">
+                <FaSearchPlus className="h-6 w-6 text-blue-400 mr-3" />
+                <h3 className="text-xl font-bold">{t.ai.log.title}</h3>
+              </div>
+              <p className="text-gray-300">
+                {t.ai.log.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Insights Section */}
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 mb-4">
+                <FaBrain className="h-8 w-8 text-purple-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.aiInsights.title}</h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                {t.aiInsights.desc}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-gray-800/50 px-4 py-2 rounded-lg border border-gray-700 flex items-center">
+                  <FaBolt className="text-yellow-400 mr-2" />
+                  <span className="text-sm font-medium text-gray-300">Auto-Trigger Analysis</span>
+                </div>
+                <div className="bg-gray-800/50 px-4 py-2 rounded-lg border border-gray-700 flex items-center">
+                  <FaSearchPlus className="text-blue-400 mr-2" />
+                  <span className="text-sm font-medium text-gray-300">Root Cause Finding</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
-              <div className="flex items-start">
-                <div className="p-3 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg mr-4 group-hover:from-purple-600/30 group-hover:to-indigo-600/30 transition-all duration-300">
-                  <FaBrain className="h-6 w-6 text-purple-400 group-hover:text-purple-300" />
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-indigo-500/30 bg-gray-900">
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-indigo-500/10 z-10 pointer-events-none"></div>
+                <Image
+                  src="/images/ai_insight.png"
+                  alt="ClusterEye AI Insights"
+                  width={800}
+                  height={600}
+                  className="w-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Anomaly Detection Section */}
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-red-500/30 bg-gray-900">
+                <Image
+                  src="/images/anomaly_detection.png"
+                  alt="Anomaly Detection Dashboard"
+                  width={800}
+                  height={600}
+                  className="w-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="inline-block p-3 rounded-full bg-gradient-to-r from-red-500/20 to-orange-500/20 mb-4">
+                <FaChartLine className="h-8 w-8 text-red-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.anomalyDetection.title}</h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                {t.anomalyDetection.desc}
+              </p>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-700 text-center">
+                  <div className="text-2xl font-bold text-white mb-1">135</div>
+                  <div className="text-xs text-gray-400">{t.anomalyDetection.stats.total}</div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{t.ai.assistant.title}</h3>
-                  <p className="text-gray-300">
-                    {t.ai.assistant.desc}
-                  </p>
+                <div className="bg-red-900/20 p-4 rounded-lg border border-red-900/30 text-center">
+                  <div className="text-2xl font-bold text-red-400 mb-1">60</div>
+                  <div className="text-xs text-red-300">{t.anomalyDetection.stats.critical}</div>
+                </div>
+                <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-900/30 text-center">
+                  <div className="text-2xl font-bold text-yellow-400 mb-1">33</div>
+                  <div className="text-xs text-yellow-300">{t.anomalyDetection.stats.warning}</div>
                 </div>
               </div>
             </div>
@@ -365,134 +465,100 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
         </div>
       </section>
 
-      {/* Control Your Cluster Section */}
+      {/* Configuration Drift Section */}
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gradient-to-b from-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block p-3 rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 mb-4">
-              <FaDatabase className="h-8 w-8 text-purple-400" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block p-3 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 mb-4">
+                <FaExchangeAlt className="h-8 w-8 text-blue-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.configDrift.title}</h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                {t.configDrift.desc}
+              </p>
+              <div className="flex flex-col space-y-4">
+                <div className="flex items-center p-3 bg-gray-800 rounded-lg border border-l-4 border-gray-700 border-l-orange-500">
+                  <div className="mr-3 p-2 bg-orange-500/10 rounded-full">
+                    <FaCloud className="text-orange-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white">pg-demo / skadi</h4>
+                    <p className="text-sm text-gray-400">/etc/postgresql/15/main/pg_hba.conf</p>
+                    <span className="text-xs text-orange-400 mt-1 inline-block border border-orange-500/30 px-2 py-0.5 rounded">{t.configDrift.review}</span>
+                  </div>
+                </div>
+                <div className="flex items-center p-3 bg-gray-800 rounded-lg border border-l-4 border-gray-700 border-l-red-500">
+                  <div className="mr-3 p-2 bg-red-500/10 rounded-full">
+                    <FaDatabase className="text-red-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white">TEST-SQL-02</h4>
+                    <p className="text-sm text-gray-400">sp_configure: max degree of parallelism</p>
+                    <span className="text-xs text-red-400 mt-1 inline-block border border-red-500/30 px-2 py-0.5 rounded">{t.configDrift.impact}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">{t.cluster.title}</h2>
-            <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto">
-              {t.cluster.desc}
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 bg-gradient-to-br from-gray-900 to-gray-850 p-8 rounded-xl border border-gray-800 shadow-xl group hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-purple-900/20 transition-all duration-300">
-              <ClientSideIconSection
-                autoFailover={{
-                  title: t.cluster.autoFailover.title,
-                  desc: t.cluster.autoFailover.desc
-                }}
-                monitoring={{
-                  title: t.cluster.monitoring.title,
-                  desc: t.cluster.monitoring.desc
-                }}
-                scaling={{
-                  title: t.cluster.scaling.title,
-                  desc: t.cluster.scaling.desc
-                }}
-              />
-            </div>
-
-            <div className="order-1 md:order-2 relative rounded-xl overflow-hidden border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] group">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-800/10 to-indigo-800/10 z-10"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-indigo-500/5 opacity-70 z-0"></div>
-              <Image
-                src="/images/cluster_control.png"
-                alt="PostgreSQL Cluster Control"
-                width={600}
-                height={400}
-                className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 p-4">
-                <h3 className="text-lg font-semibold text-white">{t.cluster.screenshot.title}</h3>
-                <p className="text-sm text-gray-300">
-                  {t.cluster.screenshot.desc}
-                </p>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-blue-500/30 bg-gray-900">
+                <Image
+                  src="/images/config_drift.png"
+                  alt="Configuration Drift Detection"
+                  width={800}
+                  height={600}
+                  className="w-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* App Platforms Section */}
+      {/* Patroni Cluster Management Section */}
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t.platforms.title}</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="order-2 md:order-1">
-              <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 p-6 rounded-xl border border-indigo-800/50">
-                <div className="flex items-center mb-4">
-                  <FaApple className="h-8 w-8 text-purple-400 mr-4" />
-                  <h3 className="text-2xl font-semibold">{t.platforms.ios.title}</h3>
-                </div>
-                <p className="mb-4 text-gray-300">
-                  {t.platforms.ios.desc}
-                </p>
-                <ul className="space-y-2 text-gray-300 mb-6">
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span>
-                    {t.platforms.ios.feature1}
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span>
-                    {t.platforms.ios.feature2}
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">✓</span>
-                    {t.platforms.ios.feature3}
-                  </li>
-                </ul>
-                <div className="mt-6">
-                  <Link href={`/${lang}/ios-app`} className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg text-white font-medium hover:from-purple-700 hover:to-indigo-700 transition duration-300 w-full sm:w-auto sm:inline-flex">
-                    <FaApple className="mr-2 h-5 w-5" />
-                    {t.platforms.ios.button}
-                  </Link>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative rounded-xl overflow-hidden border border-green-500/30 bg-gray-900">
+                <Image
+                  src="/images/patroni_management.png"
+                  alt="Patroni Cluster Management"
+                  width={800}
+                  height={600}
+                  className="w-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
 
-            <div className="order-1 md:order-2 flex justify-center">
-              {/* iPhone Mockup */}
-              <div className="relative w-full max-w-[280px] group transition-all duration-500 hover:scale-[1.03]">
-                {/* iPhone Outer Frame */}
-                <div className="relative mx-auto w-full aspect-[9/19.5] bg-gray-800 rounded-[3rem] overflow-hidden border-[14px] border-gray-900 shadow-[0_0_20px_rgba(139,92,246,0.25)]">
-                  {/* iPhone Notch */}
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-xl z-20"></div>
+            <div className="order-1 lg:order-2">
+              <div className="inline-block p-3 rounded-full bg-gradient-to-r from-green-600/20 to-emerald-600/20 mb-4">
+                <FaLayerGroup className="h-8 w-8 text-green-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.patroni.title}</h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                {t.patroni.desc}
+              </p>
 
-                  {/* iPhone Inner Screen */}
-                  <div className="relative w-full h-full overflow-hidden rounded-[2rem] z-10">
-                    <Image
-                      src="/images/ios_screenshot.png"
-                      alt="ClusterEye iOS App"
-                      fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                      priority
-                    />
-                  </div>
-
-                  {/* iPhone Bottom Line (Home Indicator) */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-white rounded-full z-20"></div>
-
-                  {/* Speaker */}
-                  <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-16 h-[4px] bg-gray-700 rounded-full z-20"></div>
-
-                  {/* Side Buttons */}
-                  <div className="absolute top-24 -right-[14px] w-[2px] h-12 bg-gray-700 rounded-l-sm"></div>
-                  <div className="absolute top-[140px] -right-[14px] w-[2px] h-16 bg-gray-700 rounded-l-sm"></div>
-                  <div className="absolute top-24 -left-[14px] w-[2px] h-12 bg-gray-700 rounded-r-sm"></div>
-                </div>
-
-                {/* Reflection effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-indigo-500/10 to-purple-500/15 rounded-[3rem] pointer-events-none"></div>
+              <div className="flex gap-4">
+                <button className="flex items-center px-6 py-3 bg-red-500/10 border border-red-500/50 text-red-400 rounded-lg hover:bg-red-500/20 transition-colors">
+                  <FaBolt className="mr-2" />
+                  {t.patroni.failover}
+                </button>
+                <button className="flex items-center px-6 py-3 bg-indigo-500/10 border border-indigo-500/50 text-indigo-400 rounded-lg hover:bg-indigo-500/20 transition-colors">
+                  <FaExchangeAlt className="mr-2" />
+                  {t.patroni.switchover}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+
 
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-800">
@@ -568,4 +634,4 @@ export default async function Home({ params }: { params: LangParams | Promise<{ 
       </section>
     </div>
   );
-} 
+}

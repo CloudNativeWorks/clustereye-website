@@ -84,7 +84,7 @@ export default function HeroSection({
               {/* MacBook Mockup */}
               <div className="relative w-full max-w-3xl group transition-all duration-500 hover:scale-[1.02]">
                 {/* MacBook Body */}
-                <div className="relative w-full bg-gray-900 rounded-t-xl pt-[5%] pb-[4%] px-[5%] border-[8px] border-gray-800 shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+                <div className="relative w-full bg-gray-900 rounded-t-xl pt-[5%] pb-[4%] px-[5%] border-[8px] border-gray-800 shadow-[0_0_60px_rgba(99,102,241,0.6)] z-10">
                   {/* MacBook Screen */}
                   <div className="relative aspect-[16/10] rounded-md overflow-hidden border border-gray-700 bg-gray-900">
                     {carouselItems && carouselItems.length > 0 ? (
@@ -104,8 +104,6 @@ export default function HeroSection({
                 </div>
                 {/* MacBook Base */}
                 <div className="relative w-full h-4 bg-gradient-to-b from-gray-800 to-gray-700 rounded-b-xl"></div>
-                {/* MacBook Bottom Line */}
-                <div className="relative w-[90%] h-[1px] mx-auto bg-gray-600"></div>
               </div>
             </div>
           </div>
@@ -113,4 +111,4 @@ export default function HeroSection({
       </div>
     </section>
   );
-} 
+}
